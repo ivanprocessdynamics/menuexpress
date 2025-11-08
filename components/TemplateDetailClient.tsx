@@ -47,7 +47,7 @@ export default function TemplateDetailClient({ template }: TemplateDetailClientP
     'Tu logo integrado',
     'Colores corporativos personalizados',
     'Contenido inicial redactado',
-    '20 fotos profesionales optimizadas',
+    'Optimización de tus imágenes y fotos',
     'Configuración de Google Analytics',
     'Integración con redes sociales',
   ];

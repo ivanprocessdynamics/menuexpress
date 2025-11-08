@@ -28,7 +28,7 @@ export default function Benefits() {
     {
       icon: Smartphone,
       title: 'Página Web con Fotos',
-      description: 'Muestra todos tus platos con imágenes profesionales que abren el apetito y venden por ti',
+      description: 'Muestra todos tus platos con imágenes atractivas que abren el apetito y venden por ti',
       color: 'text-purple-500',
       bg: 'bg-purple-50',
     },

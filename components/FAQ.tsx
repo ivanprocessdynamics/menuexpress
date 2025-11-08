@@ -49,6 +49,11 @@ export default function FAQ() {
         'Claro. Puedes cambiarlo tú mismo o pedirnos que lo actualicemos cuando quieras. Es muy fácil y rápido.',
     },
     {
+      question: '¿Incluye código QR para el menú?',
+      answer:
+        'Sí, todos los planes incluyen un código QR personalizado que puedes imprimir y colocar en las mesas, en el escaparate o donde prefieras. Tus clientes podrán escanear el código y ver tu carta digital completa al instante desde su móvil.',
+    },
+    {
       question: '¿Qué métodos de pago aceptan?',
       answer:
         ' Aceptamos Stripe y transferencia bancaria. El pago del setup se realiza al inicio del proyecto mediante enlace seguro, y la cuota mensual se activa después de la entrega de tu web',
@@ -56,7 +61,7 @@ export default function FAQ() {
     {
       question: '¿Cuánto tiempo tarda la entrega?',
       answer:
-        'El proceso estándar es de 48 horas desde que recibimos todo tu contenido (textos, fotos, logo, etc.). El tiempo incluye diseño, personalización, procesamiento y edición de fotos, revisión y ajustes iniciales.',
+        'El proceso estándar es de 48 horas desde que recibimos todo tu contenido (textos, fotos, logo, etc.). El tiempo incluye diseño, personalización, optimización de imágenes, revisión y ajustes iniciales.',
     },
     {
       question: '¿Está optimizado para móviles?',
