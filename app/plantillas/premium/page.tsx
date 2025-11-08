@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 
 export const metadata: Metadata = {
-  title: 'Plantilla Premium - Web Dynamics',
+  title: 'Plantilla Premium - Menu Express',
   description: 'Plantilla de carta digital para sushi, alta cocina y restaurantes de fusión',
 };
 

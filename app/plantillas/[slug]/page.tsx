@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: TemplatePageProps): Promise<M
   }
 
   return {
-    title: `${template.name} - Plantilla para Restaurante | Web Dynamics`,
+    title: `${template.name} - Plantilla para Restaurante | Menu Express`,
     description: template.description,
     openGraph: {
       title: template.name,

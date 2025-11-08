@@ -15,12 +15,12 @@ const playfair = Playfair_Display({
 })
 
 export const metadata: Metadata = {
-  title: 'Web Dynamics - Sitios Web para Restaurantes que Generan Reservas',
+  title: 'Menu Express - Sitios Web para Restaurantes que Generan Reservas',
   description: 'Plantillas profesionales de sitios web especializadas para restaurantes. Diseño responsive, sistema de reservas integrado y optimizado para SEO. Tu sitio listo en 48 horas.',
   keywords: 'sitios web restaurantes, páginas web restaurantes, diseño web gastronómico, reservas online, menú digital',
-  authors: [{ name: 'Web Dynamics' }],
+  authors: [{ name: 'Menu Express' }],
   openGraph: {
-    title: 'Web Dynamics - Sitios Web para Restaurantes',
+    title: 'Menu Express - Sitios Web para Restaurantes',
     description: 'Plantillas profesionales que aumentan tus reservas online',
     type: 'website',
     locale: 'es_ES',

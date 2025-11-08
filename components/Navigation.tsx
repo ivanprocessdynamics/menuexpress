@@ -41,7 +41,7 @@ export default function Navigation() {
               <ChefHat className="w-6 h-6" />
             </div>
             <span className="text-xl font-bold text-gray-900 font-serif">
-              Web Dynamics
+              Menu Express
             </span>
           </Link>
 

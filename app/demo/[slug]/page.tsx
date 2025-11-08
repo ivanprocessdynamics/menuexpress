@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: DemoPageProps): Promise<Metad
   }
 
   return {
-    title: `Demo ${template.name} - Restaurante | Web Dynamics`,
+    title: `Demo ${template.name} - Restaurante | Menu Express`,
     description: `Vista previa demo de sitio web para ${template.name}`,
     robots: {
       index: false,

@@ -13,7 +13,7 @@ export default function Footer() {
               <ChefHat className="w-6 h-6" />
             </div>
             <span className="text-xl font-bold text-white font-serif">
-              Web Dynamics
+              Menu Express
             </span>
           </div>
           <p className="text-sm max-w-2xl mx-auto">
@@ -25,7 +25,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-gray-800 pt-8 text-center">
           <p className="text-sm mb-2">
-            © {currentYear} Web Dynamics | Expertos en páginas web para restaurantes locales de Cataluña.
+            © {currentYear} Menu Express | Expertos en páginas web para restaurantes locales de Cataluña.
           </p>
           <p className="text-xs text-gray-500">
             Todos los derechos reservados.

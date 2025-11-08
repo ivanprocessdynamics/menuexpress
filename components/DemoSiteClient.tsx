@@ -406,7 +406,7 @@ export default function DemoSiteClient({ template }: DemoSiteClientProps) {
               © 2025 {demoData.restaurantName}. Todos los derechos reservados.
             </p>
             <p className="text-white/60 text-xs sm:text-sm mt-2">
-              Demo creado por Web Dynamics
+              Demo creado por Menu Express
             </p>
           </div>
         </div>
