@@ -4,9 +4,9 @@ import TemplateDetailClient from '@/components/TemplateDetailClient';
 import type { Metadata } from 'next';
 
 interface TemplatePageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export async function generateStaticParams() {
@@ -16,7 +16,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: TemplatePageProps): Promise<Metadata> {
-  const template = templates.find((t) => t.slug === params.slug);
+  const { slug } = await params;
+  const template = templates.find((t) => t.slug === slug);
 
   if (!template) {
     return {
@@ -35,8 +36,9 @@ export async function generateMetadata({ params }: TemplatePageProps): Promise<M
   };
 }
 
-export default function TemplatePage({ params }: TemplatePageProps) {
-  const template = templates.find((t) => t.slug === params.slug);
+export default async function TemplatePage({ params }: TemplatePageProps) {
+  const { slug } = await params;
+  const template = templates.find((t) => t.slug === slug);
 
   if (!template) {
     notFound();
