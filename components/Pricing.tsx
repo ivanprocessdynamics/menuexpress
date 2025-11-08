@@ -118,7 +118,7 @@ export default function Pricing() {
                       <span className="text-white/80 text-sm">/mes</span>
                     </div>
                   </div>
-                  <p className="text-xs text-white/90 mt-3 italic">"{plan.tagline}"</p>
+                  <p className="text-xs text-white/90 mt-3 italic">&ldquo;{plan.tagline}&rdquo;</p>
                 </div>
 
                 {/* Features */}

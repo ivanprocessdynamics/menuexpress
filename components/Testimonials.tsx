@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Star, ChevronLeft, ChevronRight, Quote } from 'lucide-react';
@@ -88,9 +88,9 @@ export default function Testimonials() {
     },
   ];
 
-  const nextTestimonial = () => {
+  const nextTestimonial = useCallback(() => {
     setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-  };
+  }, [testimonials.length]);
 
   const prevTestimonial = () => {
     setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
@@ -100,7 +100,7 @@ export default function Testimonials() {
   useEffect(() => {
     const timer = setInterval(nextTestimonial, 6000);
     return () => clearInterval(timer);
-  }, []);
+  }, [nextTestimonial]);
 
   const current = testimonials[currentIndex];
 
@@ -180,7 +180,7 @@ export default function Testimonials() {
                 {/* Right: Quote and Metric */}
                 <div className="md:col-span-2">
                   <blockquote className="text-lg md:text-xl leading-relaxed mb-6 relative z-10">
-                    "{current.quote}"
+                    &ldquo;{current.quote}&rdquo;
                   </blockquote>
 
                   {/* Metric Badge */}
