@@ -12,7 +12,7 @@ export default function Comparison() {
 
   const features = [
     { label: 'Tiempo para tener tu carta lista online', custom: '48 horas (listo y publicado)', scratch: '3-6 meses', generic: '1-2 semanas' },
-    { label: 'Costo inicial', custom: '€199-349', scratch: '€5,000+', generic: '€0-200' },
+    { label: 'Costo inicial', custom: '€199-349', scratch: '€1,000+', generic: '€0-200' },
     { label: 'Costo mensual', custom: '€19-49/mes', scratch: '€50-200/mes', generic: '€15-30/mes' },
     { label: 'Hosting y dominio incluido', custom: true, scratch: false, generic: false },
     { label: 'Diseño adaptado a móviles', custom: true, scratch: true, generic: false },
