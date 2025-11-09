@@ -86,10 +86,10 @@ export default function FAQ() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-3 md:mb-4 font-serif">
+          <h2 className="text-2xl md:text-5xl font-bold text-gray-900 mb-3 md:mb-4 font-serif">
             Preguntas <span className="text-primary-600">Frecuentes</span>
           </h2>
-          <p className="text-base md:text-xl text-gray-600">
+          <p className="text-sm md:text-xl text-gray-600">
             Las respuestas que necesitas antes de decidir
           </p>
         </motion.div>

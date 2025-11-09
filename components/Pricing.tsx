@@ -72,10 +72,10 @@ export default function Pricing() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-3 md:mb-4 font-serif">
+          <h2 className="text-2xl md:text-5xl font-bold text-gray-900 mb-3 md:mb-4 font-serif">
             Elige tu <span className="text-primary-600">plan perfecto</span>
           </h2>
-          <p className="text-base md:text-xl text-gray-600 max-w-3xl mx-auto mb-3 md:mb-4">
+          <p className="text-sm md:text-xl text-gray-600 max-w-3xl mx-auto mb-3 md:mb-4">
             Página web profesional con todo incluido. Sin sorpresas, sin letra pequeña.
           </p>
           <p className="text-sm md:text-lg text-primary-600 font-semibold max-w-2xl mx-auto">
@@ -106,15 +106,15 @@ export default function Pricing() {
               <div className={`bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 ${plan.popular ? 'ring-2 ring-primary-500' : ''} h-full flex flex-col`}>
                 {/* Header */}
                 <div className={`bg-gradient-to-br ${plan.gradient} p-4 md:p-6 text-center text-white`}>
-                  <h3 className="text-2xl md:text-3xl font-bold mb-2">{plan.name}</h3>
-                  <p className="text-white/90 text-xs md:text-sm mb-3 md:mb-4">{plan.ideal}</p>
+                  <h3 className="text-xl md:text-3xl font-bold mb-2">{plan.name}</h3>
+                  <p className="text-white/90 text-xs md:text-sm mb-2 md:mb-4 leading-tight">{plan.ideal}</p>
                   <div className="mb-2">
                     <div className="flex items-baseline justify-center gap-2">
-                      <span className="text-3xl md:text-4xl font-bold">€{plan.setupPrice}</span>
+                      <span className="text-2xl md:text-4xl font-bold">€{plan.setupPrice}</span>
                       <span className="text-white/80 text-xs md:text-sm">setup</span>
                     </div>
                     <div className="flex items-baseline justify-center gap-1 mt-1">
-                      <span className="text-lg md:text-xl font-semibold">+ €{plan.monthlyPrice}</span>
+                      <span className="text-base md:text-xl font-semibold">+ €{plan.monthlyPrice}</span>
                       <span className="text-white/80 text-xs md:text-sm">/mes</span>
                     </div>
                   </div>

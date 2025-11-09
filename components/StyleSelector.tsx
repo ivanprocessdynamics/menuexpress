@@ -52,11 +52,11 @@ export default function StyleSelector() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-3 md:mb-4 font-serif">
+          <h2 className="text-2xl md:text-5xl font-bold text-gray-900 mb-3 md:mb-4 font-serif">
             Diseños creados para{' '}
             <span className="text-primary-600">cada tipo de restaurante</span>
           </h2>
-          <p className="text-base md:text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-sm md:text-xl text-gray-600 max-w-3xl mx-auto">
             Cada negocio tiene su estilo, y nosotros lo entendemos.
           </p>
         </motion.div>

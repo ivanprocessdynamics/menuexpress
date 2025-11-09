@@ -36,11 +36,11 @@ export default function Comparison() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-3 md:mb-4 font-serif">
+          <h2 className="text-2xl md:text-5xl font-bold text-gray-900 mb-3 md:mb-4 font-serif">
             Más fácil, rápido y rentable{' '}
             <span className="text-primary-600">que hacerlo por tu cuenta</span>
           </h2>
-          <p className="text-base md:text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-sm md:text-xl text-gray-600 max-w-3xl mx-auto">
             Compara y descubre por qué elegir nuestra solución es la mejor decisión
           </p>
         </motion.div>

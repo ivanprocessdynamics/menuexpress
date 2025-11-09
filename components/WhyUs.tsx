@@ -59,7 +59,7 @@ export default function WhyUs() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-3 md:mb-4 font-serif">
+          <h2 className="text-2xl md:text-5xl font-bold text-gray-900 mb-3 md:mb-4 font-serif">
             ¿Por qué tantos restaurantes{' '}
             <span className="text-primary-600">confían en nosotros?</span>
           </h2>
