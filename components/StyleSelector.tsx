@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { ArrowRight } from 'lucide-react';
-import Link from 'next/link';
 import Image from 'next/image';
 
 export default function StyleSelector() {
@@ -17,6 +16,7 @@ export default function StyleSelector() {
       title: 'Clásico & Casero',
       description: 'Claridad, fotos apetitosas y fácil acceso al menú.',
       slug: 'tradicional',
+      exampleUrl: '/ejemplos/clasico-casero/',
       gradient: 'from-amber-500 to-orange-600',
       image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80',
       badge: 'Más elegido',
@@ -25,6 +25,7 @@ export default function StyleSelector() {
       title: 'Moderna & Delivery',
       description: 'Menús dinámicos y actualizables al instante.',
       slug: 'moderna',
+      exampleUrl: '/ejemplos/moderna-delivery/',
       gradient: 'from-red-500 to-pink-600',
       image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800&q=80',
       badge: null,
@@ -33,6 +34,7 @@ export default function StyleSelector() {
       title: 'Premium & Fusión',
       description: 'Diseño exclusivo para destacar y diferenciarse.',
       slug: 'premium',
+      exampleUrl: '/ejemplos/premium-fusion/',
       gradient: 'from-purple-500 to-indigo-600',
       image: 'https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?w=800&q=80',
       badge: null,
@@ -106,13 +108,15 @@ export default function StyleSelector() {
                   </p>
 
                   {/* CTA Button */}
-                  <Link
-                    href={`/plantillas/${style.slug}`}
+                  <a
+                    href={style.exampleUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="group/btn w-full inline-flex items-center justify-center px-6 py-3 bg-gray-900 text-white font-semibold rounded-lg hover:bg-primary-600 transition-all"
                   >
                     Ver ejemplo
                     <ArrowRight className="ml-2 w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
-                  </Link>
+                  </a>
                 </div>
               </div>
             </motion.div>
