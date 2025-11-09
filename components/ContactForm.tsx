@@ -78,10 +78,10 @@ export default function ContactForm() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 font-serif">
+          <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-3 md:mb-4 font-serif">
             Hablemos de tu proyecto
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-base md:text-xl text-gray-600 max-w-3xl mx-auto">
             Completa el formulario y nuestro equipo se pondrá en contacto contigo en menos de 2 horas para discutir los detalles de tu sitio web.
           </p>
         </motion.div>

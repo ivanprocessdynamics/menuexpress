@@ -38,7 +38,7 @@ export default function Hero() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
-                className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-tight font-serif"
+                className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-tight font-serif"
               >
                 Haz que tus platos{' '}
                 <span className="text-primary-600">se vendan solos</span>
@@ -50,7 +50,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="text-xl md:text-2xl text-gray-600 leading-relaxed"
+              className="text-base md:text-xl lg:text-2xl text-gray-600 leading-relaxed"
             >
               <strong className="text-gray-900">
                 Página web profesional con fotos irresistibles.
@@ -68,7 +68,7 @@ export default function Hero() {
             >
               <a
                 href="#contacto"
-                className="group inline-flex items-center justify-center px-8 py-4 bg-primary-600 text-white text-lg font-semibold rounded-lg hover:bg-primary-700 transition-all hover:shadow-xl transform hover:-translate-y-1"
+                className="group inline-flex items-center justify-center px-6 md:px-8 py-3 md:py-4 bg-primary-600 text-white text-base md:text-lg font-semibold rounded-lg hover:bg-primary-700 transition-all hover:shadow-xl transform hover:-translate-y-1"
               >
                 Quiero mi página web ahora
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />

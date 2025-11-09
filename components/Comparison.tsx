@@ -36,11 +36,11 @@ export default function Comparison() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 font-serif">
+          <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-3 md:mb-4 font-serif">
             Más fácil, rápido y rentable{' '}
             <span className="text-primary-600">que hacerlo por tu cuenta</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-base md:text-xl text-gray-600 max-w-3xl mx-auto">
             Compara y descubre por qué elegir nuestra solución es la mejor decisión
           </p>
         </motion.div>
@@ -57,11 +57,11 @@ export default function Comparison() {
               <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                   <tr>
-                    <th scope="col" className="py-4 px-3 text-left text-xs font-semibold text-gray-900">
+                    <th scope="col" className="py-3 md:py-4 px-2 md:px-3 text-left text-xs md:text-sm font-semibold text-gray-900">
                       Características
                     </th>
-                    <th scope="col" className="py-4 px-2 text-center">
-                      <div className="text-xs font-semibold text-gray-500">
+                    <th scope="col" className="py-3 md:py-4 px-1 md:px-2 text-center">
+                      <div className="text-xs md:text-sm font-semibold text-gray-500">
                         Desde Cero
                       </div>
                     </th>

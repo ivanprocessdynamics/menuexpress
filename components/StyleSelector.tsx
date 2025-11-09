@@ -52,17 +52,17 @@ export default function StyleSelector() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 font-serif">
+          <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-3 md:mb-4 font-serif">
             Diseños creados para{' '}
             <span className="text-primary-600">cada tipo de restaurante</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-base md:text-xl text-gray-600 max-w-3xl mx-auto">
             Cada negocio tiene su estilo, y nosotros lo entendemos.
           </p>
         </motion.div>
 
         {/* Style Cards */}
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
           {styles.map((style, index) => (
             <motion.div
               key={style.slug}
@@ -73,7 +73,7 @@ export default function StyleSelector() {
             >
               <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
                 {/* Header with Image Background */}
-                <div className="relative h-64 overflow-hidden">
+                <div className="relative h-56 md:h-64 overflow-hidden">
                   {/* Background Image */}
                   <Image
                     src={style.image}
@@ -89,7 +89,7 @@ export default function StyleSelector() {
                   <div className="absolute inset-0 bg-black opacity-20" />
                   
                   {/* Content */}
-                  <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6">
+                  <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-4 md:p-6">
                     {style.badge && (
                       <div className="bg-accent-500 text-white px-4 py-1 rounded-full text-sm font-bold mb-3 shadow-lg">
                         {style.badge}
