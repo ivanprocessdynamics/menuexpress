@@ -19,7 +19,7 @@ export default function Comparison() {
     { label: 'Fotos optimizadas', custom: true, scratch: 'Depende del diseñador', generic: false },
     { label: 'Menú con fotos de platos', custom: true, scratch: true, generic: false },
     { label: 'Diseño especializado para restaurantes', custom: true, scratch: true, generic: false },
-    { label: 'Editor para actualizar menú tú mismo', custom: 'Plan Pro+', scratch: false, generic: true },
+    { label: 'Menú del día dinámico', custom: 'Plan Pro+', scratch: false, generic: true },
     { label: 'Sistema de reservas integrado', custom: 'Plan Premium', scratch: false, generic: false },
     { label: 'Actualización futura', custom: 'Incluida', scratch: 'Extra €€€', generic: 'Limitada' },
     { label: 'Soporte real post-lanzamiento', custom: 'WhatsApp directo', scratch: 'Extra €€€', generic: 'Email lento' },

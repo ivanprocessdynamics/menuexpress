@@ -37,7 +37,7 @@ export default function Pricing() {
         'Todo lo del plan Esencial',
         'Hasta 50 platos con fotos',
         'Categorías avanzadas (entrantes, postres, bebidas…)',
-        'Editor para actualizar el menú del día tú mismo',
+        'Menú del día dinámico',
         'Soporte prioritario (respuestas en el mismo día)',
       ],
       gradient: 'from-red-500 to-pink-600',
