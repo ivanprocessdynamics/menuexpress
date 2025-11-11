@@ -17,14 +17,6 @@ export default function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = [
-    { href: '#plantillas', label: 'Plantillas' },
-    { href: '#beneficios', label: 'Beneficios' },
-    { href: '#testimonios', label: 'Casos de Éxito' },
-    { href: '#preguntas', label: 'FAQ' },
-    { href: '#contacto', label: 'Contacto' },
-  ];
-
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -46,16 +38,7 @@ export default function Navigation() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-gray-700 hover:text-primary-600 transition-colors font-medium"
-              >
-                {link.label}
-              </a>
-            ))}
+          <div className="hidden md:flex items-center">
             <a
               href="#contacto"
               className="bg-primary-600 text-white px-6 py-2.5 rounded-lg hover:bg-primary-700 transition-all hover:shadow-lg transform hover:-translate-y-0.5"
@@ -90,16 +73,6 @@ export default function Navigation() {
             className="md:hidden bg-white border-t border-gray-200"
           >
             <div className="container mx-auto px-4 py-4 space-y-3">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block py-2 text-gray-700 hover:text-primary-600 transition-colors font-medium"
-                >
-                  {link.label}
-                </a>
-              ))}
               <a
                 href="#contacto"
                 onClick={() => setIsMobileMenuOpen(false)}
