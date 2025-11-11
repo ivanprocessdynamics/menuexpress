@@ -8,9 +8,7 @@ import { Send, CheckCircle, Mail, Phone, MapPin, MessageCircle, Zap } from 'luci
 export default function ContactForm() {
   const [formData, setFormData] = useState({
     name: '',
-    email: '',
     phone: '',
-    restaurantType: '',
     message: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -20,20 +18,6 @@ export default function ContactForm() {
     triggerOnce: true,
     threshold: 0.1,
   });
-
-  const restaurantTypes = [
-    'Alta Cocina / Gourmet',
-    'Italiano',
-    'Japonés / Sushi',
-    'Mexicano',
-    'Fast Food',
-    'Pizzería',
-    'Vegetariano / Vegano',
-    'Fusión / Moderno',
-    'Familiar / Buffet',
-    'Cafetería / Brunch',
-    'Otro',
-  ];
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -50,9 +34,7 @@ export default function ContactForm() {
       setIsSubmitted(false);
       setFormData({
         name: '',
-        email: '',
         phone: '',
-        restaurantType: '',
         message: '',
       });
     }, 5000);
@@ -136,26 +118,6 @@ export default function ContactForm() {
                   />
                 </div>
 
-                {/* Email */}
-                <div>
-                  <label
-                    htmlFor="email"
-                    className="block text-sm font-semibold text-gray-700 mb-2"
-                  >
-                    Email *
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    required
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
-                    placeholder="tu@email.com"
-                  />
-                </div>
-
                 {/* Phone */}
                 <div>
                   <label
@@ -174,34 +136,6 @@ export default function ContactForm() {
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
                     placeholder="+34 600 000 000"
                   />
-                </div>
-
-                {/* Restaurant Type */}
-                <div>
-                  <label
-                    htmlFor="restaurantType"
-                    className="block text-sm font-semibold text-gray-700 mb-2"
-                  >
-                    Tipo de Restaurante *
-                  </label>
-                  <select
-                    id="restaurantType"
-                    name="restaurantType"
-                    required
-                    value={formData.restaurantType}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all bg-white"
-                  >
-                    <option value="">Selecciona una opción</option>
-                    {restaurantTypes.map((type) => (
-                      <option key={type} value={type}>
-                        {type}
-                      </option>
-                    ))}
-                  </select>
-                  <p className="text-xs text-gray-500 mt-2">
-                    Nos ayuda a mostrarte un diseño que encaje con tu estilo.
-                  </p>
                 </div>
 
                 {/* Message */}
