@@ -14,7 +14,8 @@ export default function StyleSelector() {
   const styles = [
     {
       title: 'Clásico & Casero',
-      description: 'Claridad, fotos apetitosas y fácil acceso al menú.',
+      description: 'Diseño cálido y acogedor. Perfecto para tapas, bares y restaurantes familiares.',
+      features: ['Menú visual con fotos', 'Diseño tradicional', 'Reservas integradas'],
       slug: 'tradicional',
       exampleUrl: 'https://tapasbar-nine.vercel.app',
       gradient: 'from-amber-500 to-orange-600',
@@ -23,7 +24,8 @@ export default function StyleSelector() {
     },
     {
       title: 'Moderna & Delivery',
-      description: 'Menús dinámicos y actualizables al instante.',
+      description: 'Diseño vibrante y dinámico. Ideal para pizzerías, hamburgueserías y delivery.',
+      features: ['Enfoque en delivery', 'Menú actualizable', 'Carga rápida'],
       slug: 'moderna',
       exampleUrl: 'https://pizzeria-phi-umber.vercel.app',
       gradient: 'from-red-500 to-pink-600',
@@ -32,12 +34,13 @@ export default function StyleSelector() {
     },
     {
       title: 'Premium & Fusión',
-      description: 'Diseño exclusivo para destacar y diferenciarse.',
+      description: 'Diseño elegante y sofisticado. Especial para alta cocina, sushi y restaurantes gourmet.',
+      features: ['Diseño exclusivo', 'Animaciones suaves', 'Galería premium'],
       slug: 'premium',
       exampleUrl: 'https://altacocina-main.vercel.app',
       gradient: 'from-purple-500 to-indigo-600',
       image: 'https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?auto=format&fit=crop&w=800&q=80&fm=webp',
-      badge: null,
+      badge: 'Exclusivo',
     },
   ];
 
@@ -53,11 +56,11 @@ export default function StyleSelector() {
           className="text-center mb-16"
         >
           <h2 className="text-2xl md:text-5xl font-bold text-gray-900 mb-3 md:mb-4 font-serif">
-            Diseños creados para{' '}
+            3 Estilos Únicos para{' '}
             <span className="text-primary-600">cada tipo de restaurante</span>
           </h2>
           <p className="text-sm md:text-xl text-gray-600 max-w-3xl mx-auto">
-            Cada negocio tiene su estilo, y nosotros lo entendemos.
+            Cada plantilla está diseñada desde cero para un tipo específico de negocio gastronómico
           </p>
         </motion.div>
 
@@ -71,41 +74,52 @@ export default function StyleSelector() {
               transition={{ delay: index * 0.15 }}
               className="group"
             >
-              <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+              <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
                 {/* Header with Image Background */}
-                <div className="relative h-56 md:h-64 overflow-hidden">
+                <div className="relative h-64 md:h-72 overflow-hidden">
                   {/* Background Image */}
                   <Image
                     src={style.image}
                     alt={style.title}
                     fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-500"
+                    className="object-cover group-hover:scale-105 transition-transform duration-700"
                   />
                   
-                  {/* Gradient Overlay - Reduced opacity to show photo */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${style.gradient} opacity-40`} />
+                  {/* Gradient Overlay */}
+                  <div className={`absolute inset-0 bg-gradient-to-br ${style.gradient} opacity-50`} />
                   
                   {/* Dark overlay for better text readability */}
-                  <div className="absolute inset-0 bg-black opacity-20" />
+                  <div className="absolute inset-0 bg-black opacity-30" />
                   
                   {/* Content */}
                   <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-4 md:p-6">
                     {style.badge && (
-                      <div className="bg-accent-500 text-white px-4 py-1 rounded-full text-sm font-bold mb-3 shadow-lg">
+                      <div className="bg-white/20 backdrop-blur-sm text-white px-4 py-1.5 rounded-full text-xs md:text-sm font-bold mb-3 shadow-lg border border-white/30">
                         {style.badge}
                       </div>
                     )}
-                    <h3 className="text-3xl font-bold text-white drop-shadow-2xl">
+                    <h3 className="text-3xl md:text-4xl font-bold text-white drop-shadow-2xl mb-2">
                       {style.title}
                     </h3>
+                    <div className="w-16 h-1 bg-white/60 rounded-full" />
                   </div>
                 </div>
 
                 {/* Content */}
                 <div className="p-6">
-                  <p className="text-gray-600 mb-6 text-center">
+                  <p className="text-gray-700 font-medium mb-4 text-center">
                     {style.description}
                   </p>
+
+                  {/* Features */}
+                  <ul className="space-y-2 mb-6">
+                    {style.features.map((feature, idx) => (
+                      <li key={idx} className="flex items-center text-sm text-gray-600">
+                        <div className="w-1.5 h-1.5 rounded-full bg-primary-500 mr-2" />
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
 
                   {/* CTA Button */}
                   <a

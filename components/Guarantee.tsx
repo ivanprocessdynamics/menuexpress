@@ -13,7 +13,7 @@ export default function Guarantee() {
   const guarantees = [
     {
       icon: Clock,
-      title: 'Entrega en 48h',
+      title: 'Entrega en 72h',
       description: 'O te devolvemos tu dinero',
       color: 'text-blue-600',
       bg: 'bg-blue-50',
@@ -78,7 +78,7 @@ export default function Guarantee() {
 
             <div className="mt-8 text-center">
               <p className="text-sm text-gray-600">
-                Más de <strong className="text-gray-900">127 restaurantes</strong> ya disfrutan de su página web profesional
+                Únete a los restaurantes que ya disfrutan de su página web profesional
               </p>
             </div>
           </div>

@@ -27,7 +27,7 @@ export default function HowItWorks() {
     },
     {
       icon: Rocket,
-      title: 'Tu página lista en 48h',
+      title: 'Tu página lista en 72h',
       description: 'Recibe tu página web online, lista para compartir y atraer clientes.',
       color: 'text-green-500',
       bg: 'bg-green-50',
@@ -113,12 +113,12 @@ export default function HowItWorks() {
           </p>
           <div className="flex flex-wrap justify-center gap-6 md:gap-8 mt-6">
             <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-primary-600 mb-1">48h</div>
+              <div className="text-3xl md:text-4xl font-bold text-primary-600 mb-1">72h</div>
               <div className="text-sm text-gray-600">Tiempo de entrega</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-primary-600 mb-1">127+</div>
-              <div className="text-sm text-gray-600">Restaurantes activos</div>
+              <div className="text-3xl md:text-4xl font-bold text-primary-600 mb-1">100%</div>
+              <div className="text-sm text-gray-600">Responsive</div>
             </div>
             <div className="text-center">
               <div className="text-3xl md:text-4xl font-bold text-primary-600 mb-1">4.9/5</div>

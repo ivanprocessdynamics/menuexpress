@@ -18,7 +18,7 @@ export default function Footer() {
             </Link>
             <p className="text-gray-400 text-sm mb-4 max-w-md">
               Plantillas profesionales de sitios web especializadas para restaurantes. 
-              Diseño responsive, entrega en 48h y soporte continuo.
+              Diseño responsive, entrega en 72h y soporte continuo.
             </p>
             <div className="flex items-center space-x-2 text-sm text-gray-400 mb-2">
               <Mail className="w-4 h-4" />

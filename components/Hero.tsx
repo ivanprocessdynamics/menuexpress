@@ -56,29 +56,19 @@ export default function Hero() {
                 Página web profesional con fotos irresistibles.
               </strong>
               <br />
-              Lista en 48 h, sin complicaciones ni conocimientos técnicos.
+              Lista en 72 h, sin complicaciones ni conocimientos técnicos.
             </motion.p>
 
-            {/* Social Proof Badges */}
+            {/* Social Proof Badge */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.45 }}
-              className="flex flex-wrap items-center gap-4 md:gap-6"
+              className="flex justify-start"
             >
-              <div className="flex items-center space-x-2">
-                <div className="flex -space-x-2">
-                  {[1, 2, 3, 4].map((i) => (
-                    <div key={i} className="w-8 h-8 rounded-full bg-gradient-to-br from-primary-400 to-accent-500 border-2 border-white" />
-                  ))}
-                </div>
-                <div className="text-sm text-gray-700">
-                  <span className="font-bold text-gray-900">+127</span> restaurantes confían en nosotros
-                </div>
-              </div>
-              <div className="flex items-center space-x-1 bg-green-50 px-3 py-1.5 rounded-full">
+              <div className="inline-flex items-center space-x-1 bg-green-50 px-4 py-2 rounded-full border border-green-200">
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                <span className="text-xs md:text-sm font-semibold text-green-700">3 plazas disponibles esta semana</span>
+                <span className="text-xs md:text-sm font-semibold text-green-700">Plazas limitadas disponibles</span>
               </div>
             </motion.div>
 

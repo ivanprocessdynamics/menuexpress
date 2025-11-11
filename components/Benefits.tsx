@@ -42,7 +42,7 @@ export default function Benefits() {
     {
       icon: Zap,
       title: 'Implementación Rápida',
-      description: 'Tu menú digital con fotos listo en 48 horas. Sin conocimientos técnicos necesarios',
+      description: 'Tu menú digital con fotos listo en 72 horas. Sin conocimientos técnicos necesarios',
       color: 'text-yellow-500',
       bg: 'bg-yellow-50',
     },

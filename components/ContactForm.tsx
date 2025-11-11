@@ -242,7 +242,7 @@ export default function ContactForm() {
                 <div className="mt-4 text-center space-y-3">
                   <div className="inline-flex items-center bg-green-50 border border-green-200 px-4 py-2 rounded-full">
                     <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse mr-2" />
-                    <span className="text-xs font-semibold text-green-700">Plazas limitadas: Solo 3 disponibles esta semana</span>
+                    <span className="text-xs font-semibold text-green-700">Respuesta en menos de 2 horas</span>
                   </div>
                   <p className="text-xs text-gray-500">
                     Tu información está segura con nosotros

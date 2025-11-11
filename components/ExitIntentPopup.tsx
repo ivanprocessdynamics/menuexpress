@@ -100,14 +100,14 @@ export default function ExitIntentPopup() {
                   {/* Content */}
                   <div className="p-8">
                     <div className="text-center mb-6">
-                      <div className="inline-flex items-center bg-red-50 border-2 border-red-200 px-4 py-2 rounded-full mb-4">
-                        <span className="text-red-600 font-bold text-sm">🔥 Solo 3 plazas disponibles esta semana</span>
+                      <div className="inline-flex items-center bg-primary-50 border-2 border-primary-200 px-4 py-2 rounded-full mb-4">
+                        <span className="text-primary-700 font-bold text-sm">⚡ Plazas limitadas disponibles</span>
                       </div>
                       <p className="text-gray-700 font-semibold mb-2">
-                        Últimas plazas con <span className="text-green-600">setup incluido</span> y entrega en 48h
+                        Últimas plazas con <span className="text-green-600">setup incluido</span> y entrega en 72h
                       </p>
                       <p className="text-sm text-gray-500">
-                        Ya han confiado en nosotros +127 restaurantes
+                        Diseño profesional y soporte dedicado
                       </p>
                     </div>
 

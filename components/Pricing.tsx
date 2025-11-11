@@ -17,7 +17,7 @@ export default function Pricing() {
       setupPrice: '199',
       monthlyPrice: '19',
       popular: true,
-      tagline: 'Tu carta online lista en 48h por menos de lo que cuesta un menú al día.',
+      tagline: 'Tu carta online lista en 72h por menos de lo que cuesta un menú al día.',
       features: [
         'Carta digital responsive (hasta 30 platos)',
         'Hosting, dominio y mantenimiento técnico',
@@ -72,8 +72,8 @@ export default function Pricing() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <div className="inline-flex items-center bg-red-50 border border-red-200 px-4 py-2 rounded-full mb-4">
-            <span className="text-red-600 font-bold text-sm">🔥 Oferta limitada: Solo 3 plazas disponibles esta semana</span>
+          <div className="inline-flex items-center bg-primary-50 border border-primary-200 px-4 py-2 rounded-full mb-4">
+            <span className="text-primary-700 font-bold text-sm">⚡ Plazas limitadas - Reserva la tuya ahora</span>
           </div>
           <h2 className="text-2xl md:text-5xl font-bold text-gray-900 mb-3 md:mb-4 font-serif">
             Elige tu <span className="text-primary-600">plan perfecto</span>
@@ -163,7 +163,7 @@ export default function Pricing() {
         >
           <div className="inline-flex items-center space-x-2 bg-primary-50 px-4 md:px-6 py-2 md:py-3 rounded-full">
             <p className="text-sm md:text-lg font-semibold text-gray-800">
-              Solicita ahora y recibe tu página lista en 48 h.
+              Solicita ahora y recibe tu página lista en 72 h.
             </p>
           </div>
         </motion.div>

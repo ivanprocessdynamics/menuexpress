@@ -16,12 +16,12 @@ const playfair = Playfair_Display({
 
 export const metadata: Metadata = {
   title: 'Menu Express - Sitios Web para Restaurantes que Generan Reservas',
-  description: 'Plantillas profesionales de sitios web especializadas para restaurantes. Diseño responsive, sistema de reservas integrado y optimizado para SEO. Tu sitio listo en 48 horas.',
+  description: 'Plantillas profesionales de sitios web especializadas para restaurantes. Diseño responsive, sistema de reservas integrado y optimizado para SEO. Tu sitio listo en 72 horas.',
   keywords: 'sitios web restaurantes, páginas web restaurantes, diseño web gastronómico, reservas online, menú digital, carta digital, website restaurante, diseño web hostelería',
   authors: [{ name: 'Menu Express' }],
   openGraph: {
     title: 'Menu Express - Sitios Web para Restaurantes que Generan Reservas',
-    description: 'Plantillas profesionales que aumentan tus reservas online. Diseño responsive, fotos irresistibles y listo en 48 horas.',
+    description: 'Plantillas profesionales que aumentan tus reservas online. Diseño responsive, fotos irresistibles y listo en 72 horas.',
     type: 'website',
     locale: 'es_ES',
     siteName: 'Menu Express',
@@ -67,7 +67,7 @@ export default function RootLayout({
               aggregateRating: {
                 '@type': 'AggregateRating',
                 ratingValue: '4.9',
-                reviewCount: '127',
+                reviewCount: '85',
               },
             }),
           }}

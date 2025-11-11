@@ -131,7 +131,7 @@ export default function TemplateDetailClient({ template }: TemplateDetailClientP
                 <div className="flex flex-wrap gap-4 mt-8 text-sm text-gray-600">
                   <div className="flex items-center">
                     <Check className="w-5 h-5 text-green-500 mr-2" />
-                    Entrega en 48h
+                    Entrega en 72h
                   </div>
                   <div className="flex items-center">
                     <Check className="w-5 h-5 text-green-500 mr-2" />
@@ -293,7 +293,7 @@ export default function TemplateDetailClient({ template }: TemplateDetailClientP
                   <div className="mt-8 pt-8 border-t border-gray-200">
                     <div className="flex items-center justify-between mb-4">
                       <span className="text-gray-700 font-semibold">Tiempo de entrega:</span>
-                      <span className="text-2xl font-bold text-primary-600">48 horas</span>
+                      <span className="text-2xl font-bold text-primary-600">72 horas</span>
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="text-gray-700 font-semibold">Soporte incluido:</span>

@@ -34,8 +34,8 @@ export default function Testimonials() {
       city: 'Madrid',
       image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80',
       quote:
-        'La implementación fue increíblemente rápida. En menos de 48 horas teníamos nuestro sitio funcionando perfectamente. El equipo de soporte es excepcional.',
-      metric: 'Implementación en 48h',
+        'La implementación fue increíblemente rápida. En menos de 72 horas teníamos nuestro sitio funcionando perfectamente. El equipo de soporte es excepcional.',
+      metric: 'Implementación en 72h',
       rating: 5,
     },
     {

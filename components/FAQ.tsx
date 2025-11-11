@@ -61,7 +61,7 @@ export default function FAQ() {
     {
       question: '¿Cuánto tiempo tarda la entrega?',
       answer:
-        'El proceso estándar es de 48 horas desde que recibimos todo tu contenido (textos, fotos, logo, etc.). El tiempo incluye diseño, personalización, optimización de imágenes, revisión y ajustes iniciales.',
+        'El proceso estándar es de 72 horas desde que recibimos todo tu contenido (textos, fotos, logo, etc.). El tiempo incluye diseño, personalización, optimización de imágenes, revisión y ajustes iniciales.',
     },
     {
       question: '¿Está optimizado para móviles?',

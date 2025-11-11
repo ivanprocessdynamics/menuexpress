@@ -14,7 +14,7 @@ export default function WhyUs() {
     {
       icon: Zap,
       title: 'Rápido',
-      description: 'Entrega en 48 h.',
+      description: 'Entrega en 72 h.',
       color: 'text-yellow-500',
       bg: 'bg-yellow-50',
     },
