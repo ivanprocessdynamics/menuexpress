@@ -72,6 +72,9 @@ export default function Pricing() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
+          <div className="inline-flex items-center bg-red-50 border border-red-200 px-4 py-2 rounded-full mb-4">
+            <span className="text-red-600 font-bold text-sm">🔥 Oferta limitada: Solo 3 plazas disponibles esta semana</span>
+          </div>
           <h2 className="text-2xl md:text-5xl font-bold text-gray-900 mb-3 md:mb-4 font-serif">
             Elige tu <span className="text-primary-600">plan perfecto</span>
           </h2>
@@ -137,13 +140,13 @@ export default function Pricing() {
                 <div className="p-4 md:p-6 pt-0">
                   <a
                     href="#contacto"
-                    className={`block w-full text-center px-4 md:px-6 py-2.5 md:py-3 rounded-lg text-sm md:text-base font-semibold transition-all ${
+                    className={`block w-full text-center px-4 md:px-6 py-2.5 md:py-3 rounded-lg text-sm md:text-base font-semibold transition-all transform hover:-translate-y-1 ${
                       plan.popular
                         ? 'bg-primary-600 text-white hover:bg-primary-700 shadow-lg hover:shadow-xl'
-                        : 'bg-gray-100 text-gray-900 hover:bg-gray-200'
+                        : 'bg-gray-100 text-gray-900 hover:bg-gray-200 hover:shadow-md'
                     }`}
                   >
-                    Solicitar ahora
+                    {plan.popular ? 'Empezar ahora →' : 'Solicitar plan'}
                   </a>
                 </div>
               </div>

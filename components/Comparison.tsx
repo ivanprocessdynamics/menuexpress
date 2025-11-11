@@ -38,10 +38,10 @@ export default function Comparison() {
         >
           <h2 className="text-2xl md:text-5xl font-bold text-gray-900 mb-3 md:mb-4 font-serif">
             Más fácil, rápido y rentable{' '}
-            <span className="text-primary-600">que hacerlo por tu cuenta</span>
+            <span className="text-primary-600">que cualquier alternativa</span>
           </h2>
           <p className="text-sm md:text-xl text-gray-600 max-w-3xl mx-auto">
-            Compara y descubre por qué elegir nuestra solución es la mejor decisión
+            Compara nuestras plantillas profesionales vs. otras opciones del mercado
           </p>
         </motion.div>
 

@@ -77,11 +77,11 @@ export default function ExitIntentPopup() {
                   >
                     <span className="text-4xl">🎉</span>
                   </motion.div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                    ¡Código de Descuento Enviado!
+                  <h3 className="text-2xl font-bold text-gray-900 mb-3">
+                    ¡Gracias por tu interés!
                   </h3>
                   <p className="text-gray-600">
-                    Revisa tu email para obtener tu 10% de descuento
+                    Te contactaremos pronto con más información sobre nuestras plantillas profesionales.
                   </p>
                 </div>
               ) : (
@@ -91,20 +91,23 @@ export default function ExitIntentPopup() {
                     <div className="inline-flex items-center justify-center w-16 h-16 bg-white/20 rounded-full mb-4">
                       <Sparkles className="w-8 h-8" />
                     </div>
-                    <h3 className="text-3xl font-bold mb-2">¡Espera!</h3>
+                    <h3 className="text-3xl font-bold mb-2">✋ ¡Espera!</h3>
                     <p className="text-primary-100">
-                      Antes de irte, obtén un descuento exclusivo
+                      Tu página web profesional te está esperando
                     </p>
                   </div>
 
                   {/* Content */}
                   <div className="p-8">
                     <div className="text-center mb-6">
-                      <div className="inline-block bg-yellow-100 text-yellow-900 px-6 py-3 rounded-lg font-bold text-2xl mb-4">
-                        10% DE DESCUENTO
+                      <div className="inline-flex items-center bg-red-50 border-2 border-red-200 px-4 py-2 rounded-full mb-4">
+                        <span className="text-red-600 font-bold text-sm">🔥 Solo 3 plazas disponibles esta semana</span>
                       </div>
-                      <p className="text-gray-600">
-                        En tu primera plantilla de sitio web para restaurante
+                      <p className="text-gray-700 font-semibold mb-2">
+                        Últimas plazas con <span className="text-green-600">setup incluido</span> y entrega en 48h
+                      </p>
+                      <p className="text-sm text-gray-500">
+                        Ya han confiado en nosotros +127 restaurantes
                       </p>
                     </div>
 
@@ -144,14 +147,14 @@ export default function ExitIntentPopup() {
 
                       <button
                         type="submit"
-                        className="w-full bg-primary-600 text-white py-4 rounded-lg font-bold hover:bg-primary-700 transition-all hover:shadow-lg"
+                        className="w-full bg-primary-600 text-white py-4 rounded-lg font-bold hover:bg-primary-700 transition-all hover:shadow-lg transform hover:-translate-y-1"
                       >
-                        Obtener Mi Descuento
+                        Reservar Mi Plaza Ahora
                       </button>
                     </form>
 
                     <p className="text-xs text-gray-500 text-center mt-4">
-                      Sin compromiso. Cancela cuando quieras.
+                      Sin compromiso. Tu información está segura con nosotros.
                     </p>
                   </div>
                 </>

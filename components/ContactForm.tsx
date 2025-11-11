@@ -239,12 +239,13 @@ export default function ContactForm() {
                   )}
                 </button>
 
-                <p className="text-xs text-gray-500 text-center">
-                  Al enviar este formulario, aceptas nuestra política de privacidad
-                </p>
-                <div className="mt-4 text-center">
-                  <p className="text-sm font-semibold text-primary-600">
-                    Plazas limitadas por semana — solo 5 nuevos restaurantes cada 7 días.
+                <div className="mt-4 text-center space-y-3">
+                  <div className="inline-flex items-center bg-green-50 border border-green-200 px-4 py-2 rounded-full">
+                    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse mr-2" />
+                    <span className="text-xs font-semibold text-green-700">Plazas limitadas: Solo 3 disponibles esta semana</span>
+                  </div>
+                  <p className="text-xs text-gray-500">
+                    Tu información está segura con nosotros
                   </p>
                 </div>
               </form>

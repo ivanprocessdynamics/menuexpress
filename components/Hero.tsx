@@ -59,6 +59,29 @@ export default function Hero() {
               Lista en 48 h, sin complicaciones ni conocimientos técnicos.
             </motion.p>
 
+            {/* Social Proof Badges */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.45 }}
+              className="flex flex-wrap items-center gap-4 md:gap-6"
+            >
+              <div className="flex items-center space-x-2">
+                <div className="flex -space-x-2">
+                  {[1, 2, 3, 4].map((i) => (
+                    <div key={i} className="w-8 h-8 rounded-full bg-gradient-to-br from-primary-400 to-accent-500 border-2 border-white" />
+                  ))}
+                </div>
+                <div className="text-sm text-gray-700">
+                  <span className="font-bold text-gray-900">+127</span> restaurantes confían en nosotros
+                </div>
+              </div>
+              <div className="flex items-center space-x-1 bg-green-50 px-3 py-1.5 rounded-full">
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                <span className="text-xs md:text-sm font-semibold text-green-700">3 plazas disponibles esta semana</span>
+              </div>
+            </motion.div>
+
             {/* CTAs */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -94,8 +117,8 @@ export default function Hero() {
               >
                 <div className="bg-white rounded overflow-hidden">
                   <Image
-                    src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1200&q=80"
-                    alt="Página Web con Fotos de Platos"
+                    src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80&fm=webp"
+                    alt="Sitio web profesional para restaurante mostrando platos gourmet con fotografía profesional"
                     width={1200}
                     height={800}
                     className="w-full h-auto"
@@ -121,8 +144,8 @@ export default function Hero() {
               >
                 <div className="bg-white rounded-xl overflow-hidden">
                   <Image
-                    src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&q=80"
-                    alt="Menú Digital en Móvil"
+                    src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=400&q=80&fm=webp"
+                    alt="Carta digital responsive en teléfono móvil con fotos de hamburguesa gourmet"
                     width={400}
                     height={800}
                     className="w-full h-auto"

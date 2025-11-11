@@ -16,27 +16,27 @@ export default function StyleSelector() {
       title: 'Clásico & Casero',
       description: 'Claridad, fotos apetitosas y fácil acceso al menú.',
       slug: 'tradicional',
-      exampleUrl: 'https://tapasbar-omega.vercel.app',
+      exampleUrl: 'https://tapasbar-nine.vercel.app',
       gradient: 'from-amber-500 to-orange-600',
-      image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80',
+      image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80&fm=webp',
       badge: 'Más elegido',
     },
     {
       title: 'Moderna & Delivery',
       description: 'Menús dinámicos y actualizables al instante.',
       slug: 'moderna',
-      exampleUrl: 'https://stellar-wombat-peek.vercel.app',
+      exampleUrl: 'https://pizzeria-phi-umber.vercel.app',
       gradient: 'from-red-500 to-pink-600',
-      image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800&q=80',
+      image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80&fm=webp',
       badge: null,
     },
     {
       title: 'Premium & Fusión',
       description: 'Diseño exclusivo para destacar y diferenciarse.',
       slug: 'premium',
-      exampleUrl: 'https://altacocina.vercel.app',
+      exampleUrl: 'https://altacocina-main.vercel.app',
       gradient: 'from-purple-500 to-indigo-600',
-      image: 'https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?w=800&q=80',
+      image: 'https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?auto=format&fit=crop&w=800&q=80&fm=webp',
       badge: null,
     },
   ];
@@ -112,9 +112,9 @@ export default function StyleSelector() {
                     href={style.exampleUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group/btn w-full inline-flex items-center justify-center px-6 py-3 bg-gray-900 text-white font-semibold rounded-lg hover:bg-primary-600 transition-all"
+                    className="group/btn w-full inline-flex items-center justify-center px-6 py-3 bg-gray-900 text-white font-semibold rounded-lg hover:bg-primary-600 transition-all transform hover:-translate-y-1 hover:shadow-xl"
                   >
-                    Ver ejemplo
+                    Ver demo en vivo
                     <ArrowRight className="ml-2 w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
                   </a>
                 </div>

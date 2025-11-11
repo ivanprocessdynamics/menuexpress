@@ -45,8 +45,8 @@ export default function Navigation() {
             </span>
           </Link>
 
-          {/* Desktop Navigation - Hidden */}
-          <div className="hidden">
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
               <a
                 key={link.href}
@@ -67,8 +67,8 @@ export default function Navigation() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 text-gray-700 hover:text-primary-600 transition-colors"
-            aria-label="Toggle menu"
+            className="md:hidden p-2 text-gray-700 hover:text-primary-600 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 rounded"
+            aria-label="Abrir menú de navegación"
           >
             {isMobileMenuOpen ? (
               <X className="w-6 h-6" />

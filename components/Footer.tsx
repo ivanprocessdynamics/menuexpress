@@ -1,35 +1,65 @@
-import { ChefHat } from 'lucide-react';
+'use client';
+
+import { ChefHat, Mail, MapPin } from 'lucide-react';
+import Link from 'next/link';
 
 export default function Footer() {
-  const currentYear = new Date().getFullYear();
-
   return (
-    <footer className="bg-gray-900 text-gray-300">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="text-center mb-8">
-          {/* Company Info */}
-          <div className="flex items-center justify-center space-x-2 mb-4">
-            <div className="bg-primary-600 text-white p-2 rounded-lg">
-              <ChefHat className="w-6 h-6" />
+    <footer className="bg-gray-900 text-white py-12">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid md:grid-cols-4 gap-8">
+          {/* Brand */}
+          <div className="md:col-span-2">
+            <Link href="/" className="flex items-center space-x-2 mb-4">
+              <div className="bg-primary-600 text-white p-2 rounded-lg">
+                <ChefHat className="w-6 h-6" />
+              </div>
+              <span className="text-xl font-bold font-serif">Menu Express</span>
+            </Link>
+            <p className="text-gray-400 text-sm mb-4 max-w-md">
+              Plantillas profesionales de sitios web especializadas para restaurantes. 
+              Diseño responsive, entrega en 48h y soporte continuo.
+            </p>
+            <div className="flex items-center space-x-2 text-sm text-gray-400 mb-2">
+              <Mail className="w-4 h-4" />
+              <span>hola@menuexpress.es</span>
             </div>
-            <span className="text-xl font-bold text-white font-serif">
-              Menu Express
-            </span>
+            <div className="flex items-center space-x-2 text-sm text-gray-400">
+              <MapPin className="w-4 h-4" />
+              <span>Barcelona, España</span>
+            </div>
           </div>
-          <p className="text-sm max-w-2xl mx-auto">
-            Creamos sitios web profesionales especializados para restaurantes que
-            generan resultados reales.
-          </p>
+
+          {/* Quick Links */}
+          <div>
+            <h3 className="font-semibold mb-4">Enlaces Rápidos</h3>
+            <ul className="space-y-2 text-sm text-gray-400">
+              <li><a href="#estilos" className="hover:text-white transition-colors">Plantillas</a></li>
+              <li><a href="#como-funciona" className="hover:text-white transition-colors">Cómo Funciona</a></li>
+              <li><a href="#precios" className="hover:text-white transition-colors">Precios</a></li>
+              <li><a href="#preguntas" className="hover:text-white transition-colors">FAQ</a></li>
+              <li><a href="#contacto" className="hover:text-white transition-colors">Contacto</a></li>
+            </ul>
+          </div>
+
+          {/* Resources */}
+          <div>
+            <h3 className="font-semibold mb-4">Recursos</h3>
+            <ul className="space-y-2 text-sm text-gray-400">
+              <li><span className="opacity-50">Blog (Próximamente)</span></li>
+              <li><span className="opacity-50">Guías (Próximamente)</span></li>
+              <li><span className="opacity-50">Casos de Éxito</span></li>
+              <li><span className="opacity-50">Soporte</span></li>
+            </ul>
+          </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="border-t border-gray-800 pt-8 text-center">
-          <p className="text-sm mb-2">
-            © {currentYear} Menu Express | Expertos en páginas web para restaurantes locales de Cataluña.
-          </p>
-          <p className="text-xs text-gray-500">
-            Todos los derechos reservados.
-          </p>
+        <div className="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
+          <p>&copy; {new Date().getFullYear()} Menu Express. Todos los derechos reservados.</p>
+          <div className="flex space-x-6 mt-4 md:mt-0">
+            <span className="opacity-50">Política de Privacidad</span>
+            <span className="opacity-50">Términos de Servicio</span>
+          </div>
         </div>
       </div>
     </footer>
