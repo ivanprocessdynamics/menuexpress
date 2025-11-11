@@ -107,24 +107,10 @@ export default function HowItWorks() {
           transition={{ delay: 0.8 }}
           className="text-center bg-gradient-to-r from-primary-50 to-accent-50 rounded-2xl p-8"
         >
-          <p className="text-lg md:text-xl text-gray-700 font-medium mb-4">
+          <p className="text-lg md:text-xl text-gray-700 font-medium">
             Sin webs complicadas. Sin plantillas genéricas.{' '}
             <span className="text-primary-600 font-bold">Solo resultados reales.</span>
           </p>
-          <div className="flex flex-wrap justify-center gap-6 md:gap-8 mt-6">
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-primary-600 mb-1">72h</div>
-              <div className="text-sm text-gray-600">Tiempo de entrega</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-primary-600 mb-1">100%</div>
-              <div className="text-sm text-gray-600">Responsive</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-primary-600 mb-1">4.9/5</div>
-              <div className="text-sm text-gray-600">Valoración media</div>
-            </div>
-          </div>
         </motion.div>
       </div>
     </section>
