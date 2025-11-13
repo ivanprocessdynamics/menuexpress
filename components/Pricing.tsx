@@ -16,7 +16,7 @@ export default function Pricing() {
       ideal: 'Bares sencillos, menú del día, braserías pequeñas, sitios familiares.',
       setupPrice: '199',
       monthlyPrice: '19',
-      popular: true,
+      popular: false,
       tagline: 'Valor real: este cliente no necesita más. Si tuviera 100 platos… no sería este tipo de cliente.',
       features: [
         'Carta digital simple (sin categorías complejas)',
@@ -32,7 +32,7 @@ export default function Pricing() {
       ideal: 'Restaurantes medianos con tapas, carnes, postres, vinos.',
       setupPrice: '249',
       monthlyPrice: '29',
-      popular: false,
+      popular: true,
       tagline: 'Quieren libertad para gestionar su carta solos.',
       features: [
         'Todo del Esencial',
@@ -46,7 +46,7 @@ export default function Pricing() {
       gradient: 'from-red-500 to-pink-600',
     },
     {
-      name: '👑 Nuevo Premium',
+      name: 'Premium',
       ideal: 'Sushi, restaurantes modernos, sitios con carta extensa o que quieren imagen seria.',
       setupPrice: '349',
       monthlyPrice: '49',
