@@ -13,6 +13,7 @@ export default function ContactForm() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -22,22 +23,47 @@ export default function ContactForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setErrorMessage(null);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-
-    // Reset form after 5 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({
-        name: '',
-        phone: '',
-        message: '',
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/cezarvalentinivan@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          'Nombre del Restaurante': formData.name,
+          'Teléfono': formData.phone,
+          'Mensaje': formData.message,
+          _subject: 'Nueva solicitud - Menu Express',
+          _captcha: 'false',
+          _template: 'table',
+        }),
       });
-    }, 5000);
+
+      if (!response.ok) {
+        throw new Error('No se pudo enviar el formulario');
+      }
+
+      await response.json();
+
+      setIsSubmitting(false);
+      setIsSubmitted(true);
+
+      setTimeout(() => {
+        setIsSubmitted(false);
+        setFormData({
+          name: '',
+          phone: '',
+          message: '',
+        });
+      }, 5000);
+    } catch (err) {
+      console.error(err);
+      setErrorMessage('Hubo un problema al enviar tu solicitud. Por favor, inténtalo de nuevo.');
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (
@@ -172,6 +198,10 @@ export default function ContactForm() {
                     </>
                   )}
                 </button>
+
+                {errorMessage && (
+                  <p className="text-sm text-red-600 text-center">{errorMessage}</p>
+                )}
 
                 <div className="mt-4 text-center space-y-3">
                   <div className="inline-flex items-center bg-green-50 border border-green-200 px-4 py-2 rounded-full">
