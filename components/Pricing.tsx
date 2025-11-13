@@ -58,7 +58,7 @@ export default function Pricing() {
         'Configuración avanzada (subcategorías, platos recomendados, secciones especiales)',
         'Estadísticas de visitas y clics',
         'Soporte 2h',
-        'Optimización de fotos (para que cargue rápido)',
+        'Mejora visual de las fotos (editamos cada foto para que transmitan profesionalidad)',
       ],
       gradient: 'from-purple-500 to-indigo-600',
     },
