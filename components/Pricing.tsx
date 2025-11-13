@@ -12,7 +12,7 @@ export default function Pricing() {
 
   const plans = [
     {
-      name: '❤️ Nuevo Esencial',
+      name: 'Esencial',
       ideal: 'Bares sencillos, menú del día, braserías pequeñas, sitios familiares.',
       setupPrice: '199',
       monthlyPrice: '19',
@@ -28,7 +28,7 @@ export default function Pricing() {
       gradient: 'from-amber-500 to-orange-600',
     },
     {
-      name: '🔥 Nuevo Profesional',
+      name: 'Profesional',
       ideal: 'Restaurantes medianos con tapas, carnes, postres, vinos.',
       setupPrice: '249',
       monthlyPrice: '29',
