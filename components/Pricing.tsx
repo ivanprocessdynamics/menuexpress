@@ -13,47 +13,43 @@ export default function Pricing() {
   const plans = [
     {
       name: 'Esencial',
-      ideal: 'Bares sencillos, menú del día, braserías pequeñas, sitios familiares.',
+      ideal: 'Bares sencillos, braserías pequeñas, sitios familiares.',
       setupPrice: '199',
       monthlyPrice: '19',
       popular: false,
-      tagline: 'Valor real: este cliente no necesita más. Si tuviera 100 platos… no sería este tipo de cliente.',
       features: [
-        'Carta digital simple (sin categorías complejas)',
+        'Carta digital simple',
         'Hasta 30 platos/fotos (suficiente para bares pequeños)',
         'Hosting + dominio',
-        'Actualización desde Sheets (1 vez al mes si necesitan tu ayuda)',
+        'Actualización del menú (1 vez al mes)',
         'Soporte básico (24h)',
       ],
       gradient: 'from-amber-500 to-orange-600',
     },
     {
       name: 'Profesional',
-      ideal: 'Restaurantes medianos con tapas, carnes, postres, vinos.',
+      ideal: 'Restaurantes medianos con platos básicos, que no necesiten actualizaciones frecuentes',
       setupPrice: '249',
       monthlyPrice: '29',
       popular: true,
-      tagline: 'Quieren libertad para gestionar su carta solos.',
       features: [
         'Todo del Esencial',
-        'Platos ilimitados',
-        'Categorías (entrantes, carnes, postres, bebidas…)',
-        'Menú del día dinámico',
-        'Fotos ilimitadas',
+        'Hasta 50 platos/fotos',
         'Soporte en el mismo día',
-        'Integración con Google Sheets (actualización por ellos)',
+        'Actualización del menú (2 veces al mes)',
       ],
       gradient: 'from-red-500 to-pink-600',
     },
     {
       name: 'Premium',
-      ideal: 'Sushi, restaurantes modernos, sitios con carta extensa o que quieren imagen seria.',
+      ideal: 'Restaurantes que quieran una imagen seria, con menú actualizado en tiempo real',
       setupPrice: '349',
       monthlyPrice: '49',
       popular: false,
-      tagline: 'Destaca y vende más con diseño a medida.',
       features: [
         'Todo del Profesional',
+        'Platos/Fotos ilimitados',
+        'Menú actualizado en tiempo real por usted',
         'Página diseñada con su estilo (colores, tipografía, fotos propias)',
         'Configuración avanzada (subcategorías, platos recomendados, secciones especiales)',
         'Estadísticas de visitas y clics',
@@ -124,7 +120,6 @@ export default function Pricing() {
                       <span className="text-white/80 text-xs md:text-sm">/mes</span>
                     </div>
                   </div>
-                  <p className="text-xs text-white/90 mt-2 md:mt-3 italic leading-snug">&ldquo;{plan.tagline}&rdquo;</p>
                 </div>
 
                 {/* Features */}
