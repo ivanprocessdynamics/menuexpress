@@ -2,7 +2,7 @@
 
 import { useEffect, useState, type ChangeEvent, type FormEvent } from 'react';
 import { uploadImageToCloudinary } from '@/lib/cloudinaryUpload';
-import { Edit3, RefreshCw, Save, XCircle } from 'lucide-react';
+import { Edit3, RefreshCw, Save, XCircle, Search, X } from 'lucide-react';
 
 type DishRow = {
   id: string;
@@ -34,7 +34,9 @@ export default function EditDishesSection() {
   const [saving, setSaving] = useState(false);
   const [statusMessage, setStatusMessage] = useState<string | null>(null);
   const [categoryFilter, setCategoryFilter] = useState<string>('Todas');
+  const [searchTerm, setSearchTerm] = useState('');
   const [uploadingImage, setUploadingImage] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     void loadDishes();
@@ -72,6 +74,13 @@ export default function EditDishesSection() {
       orden: dish.orden ?? 0,
     });
     setStatusMessage(null);
+    setShowModal(true);
+  }
+
+  function handleCloseModal() {
+    setSelectedDish(null);
+    setStatusMessage(null);
+    setShowModal(false);
   }
 
   function handleEditChange(
@@ -160,24 +169,29 @@ export default function EditDishesSection() {
     }
   }
 
-  const filteredDishes = dishes.filter((dish) =>
-    categoryFilter === 'Todas' ? true : dish.categoria === categoryFilter
-  );
+  const filteredDishes = dishes.filter((dish) => {
+    const categoryMatch =
+      categoryFilter === 'Todas' ? true : dish.categoria === categoryFilter;
+    const searchMatch = dish.nombre
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase());
+    return categoryMatch && searchMatch;
+  });
 
   return (
-    <section className="mt-10 space-y-6">
-      <div className="flex items-center justify-between gap-3">
-        <h2 className="text-xl font-semibold text-gray-900 flex items-center gap-2">
-          <Edit3 className="w-5 h-5" />
+    <section className="mt-10 space-y-4 md:space-y-6">
+      <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+        <h2 className="flex items-center gap-2 text-2xl font-semibold text-gray-900 md:text-3xl">
+          <Edit3 className="h-6 w-6" />
           Gestionar platos existentes
         </h2>
         <button
           type="button"
           onClick={() => void loadDishes()}
           disabled={loading}
-          className="inline-flex items-center gap-2 rounded-md border border-gray-300 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 disabled:opacity-50"
+          className="inline-flex items-center gap-2 self-start rounded-full border border-gray-300 bg-white px-4 py-1.5 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 disabled:opacity-50"
         >
-          <RefreshCw className="w-4 h-4" />
+          <RefreshCw className="h-4 w-4" />
           {loading ? 'Actualizando...' : 'Recargar'}
         </button>
       </div>
@@ -188,89 +202,131 @@ export default function EditDishesSection() {
           <span>{error}</span>
         </div>
       )}
-
-      <div className="grid gap-6 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1.4fr)]">
-        {/* Lista de platos */}
-        <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
-          <div className="mb-3 flex items-center justify-between gap-3">
-            <p className="text-sm font-medium text-gray-700">Platos en Google Sheets</p>
-            <select
-              value={categoryFilter}
-              onChange={(e) => setCategoryFilter(e.target.value)}
-              className="rounded-md border border-gray-300 px-2 py-1 text-xs shadow-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
-            >
-              <option value="Todas">Todas las categorías</option>
-              <option value="Tapas">Tapas</option>
-              <option value="Raciones">Raciones</option>
-              <option value="Postres">Postres</option>
-              <option value="Bebidas">Bebidas</option>
-            </select>
+      <div className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm md:p-5">
+        <div className="mb-4 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+          <div>
+            <p className="text-base font-semibold text-gray-900 md:text-lg">
+              Platos en Google Sheets
+            </p>
+            <p className="text-xs text-gray-500 md:text-sm">
+              Toca un plato para editarlo. Los cambios se guardan directamente en la hoja.
+            </p>
           </div>
-
-          <div className="max-h-96 overflow-auto rounded border border-gray-100">
-            <table className="min-w-full divide-y divide-gray-200 text-sm">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-500">ID</th>
-                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-500">Categoría</th>
-                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-500">Nombre</th>
-                  <th className="px-3 py-2 text-right text-xs font-semibold text-gray-500">Precio</th>
-                  <th className="px-3 py-2 text-center text-xs font-semibold text-gray-500">Activo</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-100 bg-white">
-                {filteredDishes.length === 0 && !loading && (
-                  <tr>
-                    <td colSpan={5} className="px-3 py-4 text-center text-xs text-gray-500">
-                      No hay platos para esta categoría.
-                    </td>
-                  </tr>
-                )}
-                {filteredDishes.map((dish) => (
-                  <tr
-                    key={dish.id}
-                    className={`cursor-pointer hover:bg-primary-50/60 ${
-                      selectedDish?.id === dish.id ? 'bg-primary-50' : ''
-                    }`}
-                    onClick={() => handleSelectDish(dish)}
-                  >
-                    <td className="whitespace-nowrap px-3 py-2 text-xs font-mono text-gray-500">
-                      {dish.id}
-                    </td>
-                    <td className="whitespace-nowrap px-3 py-2 text-xs text-gray-700">
-                      {dish.categoria}
-                    </td>
-                    <td className="px-3 py-2 text-xs text-gray-900">{dish.nombre}</td>
-                    <td className="whitespace-nowrap px-3 py-2 text-right text-xs text-gray-800">
-                      €{dish.precio}
-                    </td>
-                    <td className="px-3 py-2 text-center text-xs">
-                      {dish.activo ? (
-                        <span className="inline-flex rounded-full bg-green-100 px-2 py-0.5 text-[10px] font-semibold text-green-700">
-                          Activo
-                        </span>
-                      ) : (
-                        <span className="inline-flex rounded-full bg-gray-100 px-2 py-0.5 text-[10px] font-semibold text-gray-600">
-                          Inactivo
-                        </span>
-                      )}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <div className="flex flex-col items-stretch gap-2 sm:flex-row sm:items-center">
+            <div className="relative w-full sm:w-56">
+              <Search className="pointer-events-none absolute left-2.5 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
+              <input
+                type="text"
+                placeholder="Buscar plato..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full rounded-full border border-gray-300 bg-gray-50 py-1.5 pl-8 pr-3 text-xs text-gray-800 shadow-sm outline-none ring-0 transition focus:border-primary-500 focus:bg-white focus:ring-1 focus:ring-primary-500 md:text-sm"
+              />
+            </div>
+            <div className="flex flex-wrap gap-1.5">
+              {['Todas', 'Tapas', 'Raciones', 'Postres', 'Bebidas'].map((cat) => (
+                <button
+                  key={cat}
+                  type="button"
+                  onClick={() => setCategoryFilter(cat)}
+                  className={`rounded-full px-3 py-1 text-xs font-medium transition md:text-sm ${
+                    categoryFilter === cat
+                      ? 'bg-primary-600 text-white shadow-sm'
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  }`}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 
-        {/* Formulario de edición */}
-        <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
-          {selectedDish ? (
-            <form onSubmit={handleSave} className="space-y-4">
-              <div className="flex items-center justify-between gap-3">
-                <div>
-                  <p className="text-sm font-semibold text-gray-900">Editar plato</p>
-                  <p className="text-xs text-gray-500">ID: {selectedDish.id}</p>
-                </div>
+        <div className="max-h-[28rem] overflow-auto rounded-xl border border-gray-100">
+          <table className="min-w-full divide-y divide-gray-200 text-sm md:text-base">
+            <thead className="bg-gray-50">
+              <tr>
+                <th className="px-3 py-2 text-left text-[11px] font-semibold uppercase tracking-wide text-gray-500 md:text-xs">
+                  Categoría
+                </th>
+                <th className="px-3 py-2 text-left text-[11px] font-semibold uppercase tracking-wide text-gray-500 md:text-xs">
+                  Nombre
+                </th>
+                <th className="px-3 py-2 text-right text-[11px] font-semibold uppercase tracking-wide text-gray-500 md:text-xs">
+                  Precio
+                </th>
+                <th className="px-3 py-2 text-right text-[11px] font-semibold uppercase tracking-wide text-gray-500 md:text-xs">
+                  Estado
+                </th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-100 bg-white">
+              {filteredDishes.length === 0 && !loading && (
+                <tr>
+                  <td
+                    colSpan={4}
+                    className="px-3 py-4 text-center text-xs text-gray-500 md:text-sm"
+                  >
+                    No hay platos que coincidan con los filtros.
+                  </td>
+                </tr>
+              )}
+              {filteredDishes.map((dish) => (
+                <tr
+                  key={dish.id}
+                  className="cursor-pointer hover:bg-primary-50/60"
+                  onClick={() => handleSelectDish(dish)}
+                >
+                  <td className="whitespace-nowrap px-3 py-3 text-xs font-medium text-gray-700 md:text-sm">
+                    {dish.categoria}
+                  </td>
+                  <td className="px-3 py-3 text-xs font-semibold text-gray-900 md:text-base">
+                    {dish.nombre}
+                  </td>
+                  <td className="whitespace-nowrap px-3 py-3 text-right text-xs text-gray-800 md:text-sm">
+                    €{dish.precio}
+                  </td>
+                  <td className="px-3 py-3 text-right text-xs md:text-sm">
+                    <span
+                      className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[11px] font-semibold md:text-xs ${
+                        dish.activo
+                          ? 'bg-green-100 text-green-700'
+                          : 'bg-red-100 text-red-700'
+                      }`}
+                    >
+                      <span className="h-1.5 w-1.5 rounded-full bg-current" />
+                      {dish.activo ? 'Activo' : 'Inactivo'}
+                    </span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {showModal && selectedDish && (
+        <div className="fixed inset-0 z-40 flex items-center justify-center px-4 py-8">
+          <div
+            className="absolute inset-0 bg-black/40"
+            onClick={handleCloseModal}
+          />
+          <div className="relative z-10 w-full max-w-lg rounded-2xl bg-white p-5 shadow-2xl md:p-6">
+            <button
+              type="button"
+              onClick={handleCloseModal}
+              className="absolute right-3 top-3 rounded-full p-1 text-gray-400 hover:bg-gray-100 hover:text-gray-700"
+              aria-label="Cerrar edición"
+            >
+              <X className="h-4 w-4" />
+            </button>
+
+            <form onSubmit={handleSave} className="space-y-4 pt-2">
+              <div className="flex flex-col gap-1">
+                <p className="text-lg font-semibold text-gray-900 md:text-xl">
+                  Editar plato
+                </p>
+                <p className="text-xs text-gray-500">ID: {selectedDish.id}</p>
               </div>
 
               <div className="grid gap-3 sm:grid-cols-2">
@@ -280,7 +336,7 @@ export default function EditDishesSection() {
                     name="categoria"
                     value={selectedDish.categoria}
                     onChange={handleEditChange}
-                    className="rounded-md border border-gray-300 px-3 py-1.5 text-xs shadow-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
+                    className="rounded-lg border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
                   >
                     <option value="Tapas">Tapas</option>
                     <option value="Raciones">Raciones</option>
@@ -295,7 +351,7 @@ export default function EditDishesSection() {
                     name="precio"
                     value={selectedDish.precio}
                     onChange={handleEditChange}
-                    className="rounded-md border border-gray-300 px-3 py-1.5 text-xs shadow-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
+                    className="rounded-lg border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
                   />
                 </div>
               </div>
@@ -307,7 +363,7 @@ export default function EditDishesSection() {
                   name="nombre"
                   value={selectedDish.nombre}
                   onChange={handleEditChange}
-                  className="rounded-md border border-gray-300 px-3 py-1.5 text-xs shadow-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
+                  className="rounded-lg border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
                 />
               </div>
 
@@ -317,90 +373,88 @@ export default function EditDishesSection() {
                   name="descripcion"
                   value={selectedDish.descripcion}
                   onChange={handleEditChange}
-                  rows={3}
-                  className="rounded-md border border-gray-300 px-3 py-1.5 text-xs shadow-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
+                  rows={4}
+                  className="rounded-lg border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
                 />
               </div>
 
-              <div className="flex flex-col gap-1">
-                <label className="text-xs font-medium text-gray-700">Foto (URL)</label>
-                <input
-                  type="text"
-                  name="fotoUrl"
-                  value={selectedDish.fotoUrl}
-                  onChange={handleEditChange}
-                  className="rounded-md border border-gray-300 px-3 py-1.5 text-xs shadow-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500 text-[11px]"
-                />
-                <div className="mt-2 flex items-center gap-3">
-                  {selectedDish.fotoUrl && (
-                    <img
-                      src={selectedDish.fotoUrl}
-                      alt={selectedDish.nombre}
-                      className="h-20 w-20 rounded-md border border-gray-200 object-cover"
-                    />
-                  )}
-                  <div className="flex flex-col gap-1 text-xs text-gray-600">
-                    <label className="inline-flex cursor-pointer items-center gap-2 text-[11px] font-medium text-primary-700">
-                      <span className="rounded-md border border-primary-200 bg-primary-50 px-2 py-1 text-[11px] font-semibold">
-                        Subir nueva foto
-                      </span>
-                      <input
-                        type="file"
-                        accept="image/*"
-                        className="hidden"
-                        onChange={handleUploadNewImage}
-                        disabled={uploadingImage}
-                      />
-                    </label>
-                    <span className="text-[11px] text-gray-500">
-                      Se subirá a Cloudinary y se actualizará la URL.
+              <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:gap-4">
+                {selectedDish.fotoUrl && (
+                  <img
+                    src={selectedDish.fotoUrl}
+                    alt={selectedDish.nombre}
+                    className="h-24 w-24 rounded-md border border-gray-200 object-cover sm:h-28 sm:w-28"
+                  />
+                )}
+                <div className="flex flex-1 flex-col gap-1 text-xs text-gray-600">
+                  <span className="text-xs font-medium text-gray-700">Foto del plato</span>
+                  <label className="inline-flex cursor-pointer items-center gap-2 text-xs font-medium text-primary-700">
+                    <span className="rounded-md border border-primary-200 bg-primary-50 px-3 py-1.5 text-xs font-semibold">
+                      Subir nueva foto
                     </span>
-                  </div>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      className="hidden"
+                      onChange={handleUploadNewImage}
+                      disabled={uploadingImage}
+                    />
+                  </label>
+                  <span className="text-[11px] text-gray-500">
+                    Se subirá a Cloudinary y se actualizará automáticamente en el menú.
+                  </span>
                 </div>
               </div>
 
-              <div className="flex items-center justify-between gap-3">
-                <label className="inline-flex items-center gap-2 text-xs text-gray-700">
-                  <input
-                    type="checkbox"
-                    name="activo"
-                    checked={selectedDish.activo}
-                    onChange={handleEditChange}
-                    className="h-3.5 w-3.5 rounded border-gray-300 text-primary-600 focus:ring-primary-500"
-                  />
-                  <span>Plato activo en el menú</span>
-                </label>
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <div className="flex items-center gap-2">
+                  <span className="text-xs font-medium text-gray-700">Estado</span>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setSelectedDish((prev) =>
+                        prev ? { ...prev, activo: !prev.activo } : prev
+                      )
+                    }
+                    className={`inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-semibold md:text-sm ${
+                      selectedDish.activo
+                        ? 'bg-green-100 text-green-700'
+                        : 'bg-red-100 text-red-700'
+                    }`}
+                  >
+                    <span className="h-1.5 w-1.5 rounded-full bg-current" />
+                    {selectedDish.activo ? 'Activo' : 'Inactivo'}
+                  </button>
+                </div>
                 <div className="text-[11px] text-gray-500">
                   Orden actual: {selectedDish.orden}
                 </div>
               </div>
 
               {statusMessage && (
-                <p className="text-xs text-gray-700">{statusMessage}</p>
+                <p className="text-xs text-gray-700 md:text-sm">{statusMessage}</p>
               )}
 
-              <button
-                type="submit"
-                disabled={saving}
-                className="inline-flex items-center justify-center rounded-md bg-primary-600 px-4 py-2 text-sm font-medium text-white shadow-sm transition hover:bg-primary-700 disabled:cursor-not-allowed disabled:bg-gray-300"
-              >
-                {saving ? (
-                  'Guardando...'
-                ) : (
-                  <span className="inline-flex items-center gap-2">
-                    <Save className="h-4 w-4" />
-                    Guardar cambios
-                  </span>
-                )}
-              </button>
+              <div className="flex justify-end">
+                <button
+                  type="submit"
+                  disabled={saving}
+                  className="inline-flex items-center justify-center rounded-full bg-primary-600 px-5 py-2 text-sm font-medium text-white shadow-sm transition hover:bg-primary-700 disabled:cursor-not-allowed disabled:bg-gray-300"
+                >
+                  {saving ? (
+                    'Guardando...'
+                  ) : (
+                    <span className="inline-flex items-center gap-2">
+                      <Save className="h-4 w-4" />
+                      Guardar cambios
+                    </span>
+                  )}
+                </button>
+              </div>
             </form>
-          ) : (
-            <div className="flex h-full items-center justify-center text-sm text-gray-500">
-              Selecciona un plato de la lista para editarlo.
-            </div>
-          )}
+          </div>
         </div>
-      </div>
+      )}
     </section>
   );
 }
