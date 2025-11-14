@@ -169,6 +169,56 @@ export default function EditDishesSection() {
     }
   }
 
+  async function toggleDishActive(dish: DishRow, nextActive: boolean) {
+    const previous = dish.activo;
+
+    // Actualización optimista en la tabla
+    setDishes((current) =>
+      current.map((d) => (d.id === dish.id ? { ...d, activo: nextActive } : d))
+    );
+
+    try {
+      const payload = {
+        id: dish.id,
+        categoria: dish.categoria,
+        nombre: dish.nombre,
+        descripcion: dish.descripcion,
+        precio: dish.precio,
+        fotoUrl: dish.fotoUrl,
+        activo: nextActive,
+        orden: dish.orden,
+      };
+
+      const res = await fetch('/api/platos/update', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => null);
+        throw new Error(data?.error || 'No se pudo actualizar el plato');
+      }
+
+      // Si el modal está abierto para este plato, sincronizar estado
+      setSelectedDish((prev) =>
+        prev && prev.id === dish.id ? { ...prev, activo: nextActive } : prev
+      );
+    } catch (error) {
+      console.error('Error actualizando estado del plato', error);
+      setStatusMessage(
+        'Hubo un error cambiando el estado del plato. Revisa la consola.'
+      );
+
+      // Revertir la actualización optimista
+      setDishes((current) =>
+        current.map((d) => (d.id === dish.id ? { ...d, activo: previous } : d))
+      );
+    }
+  }
+
   const filteredDishes = dishes.filter((dish) => {
     const categoryMatch =
       categoryFilter === 'Todas' ? true : dish.categoria === categoryFilter;
@@ -287,7 +337,12 @@ export default function EditDishesSection() {
                     €{dish.precio}
                   </td>
                   <td className="px-3 py-3 text-right text-xs md:text-sm">
-                    <span
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        void toggleDishActive(dish, !dish.activo);
+                      }}
                       className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[11px] font-semibold md:text-xs ${
                         dish.activo
                           ? 'bg-green-100 text-green-700'
@@ -296,7 +351,7 @@ export default function EditDishesSection() {
                     >
                       <span className="h-1.5 w-1.5 rounded-full bg-current" />
                       {dish.activo ? 'Activo' : 'Inactivo'}
-                    </span>
+                    </button>
                   </td>
                 </tr>
               ))}
