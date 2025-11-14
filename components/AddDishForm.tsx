@@ -73,7 +73,7 @@ export default function AddDishForm() {
 
       const trimmedWebhook = (webhookUrl ?? '').trim();
       if (trimmedWebhook) {
-        const res = await fetch(trimmedWebhook, {
+        const res = await fetch('/api/nuevo-plato', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -82,7 +82,7 @@ export default function AddDishForm() {
         });
 
         if (!res.ok) {
-          throw new Error(`Error en webhook: ${res.status} ${res.statusText}`);
+          throw new Error(`Error en webhook (API): ${res.status} ${res.statusText}`);
         }
       }
 
