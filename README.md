@@ -234,7 +234,19 @@ Si añades APIs o servicios externos:
 NEXT_PUBLIC_API_KEY=tu_api_key
 ```
 
-3. En Vercel, ve a Settings > Environment Variables
+  3. En Vercel, ve a Settings > Environment Variables
+
+### Variables para formulario interno de platos
+
+Para el formulario interno de alta de platos, crea (o edita) `.env.local` y añade:
+
+```
+VITE_CLOUDINARY_CLOUD_NAME=mi_cloud_name_aqui
+VITE_CLOUDINARY_UPLOAD_PRESET=mi_upload_preset_aqui
+VITE_NEW_DISH_WEBHOOK_URL=
+```
+
+`VITE_NEW_DISH_WEBHOOK_URL` es opcional; puedes dejarla vacía si aún no tienes el webhook.
 
 ## 🎯 Optimización de Conversión
 

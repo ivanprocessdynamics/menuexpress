@@ -14,6 +14,11 @@ const nextConfig: NextConfig = {
     ],
   },
   reactStrictMode: true,
+  env: {
+    VITE_CLOUDINARY_CLOUD_NAME: process.env.VITE_CLOUDINARY_CLOUD_NAME || '',
+    VITE_CLOUDINARY_UPLOAD_PRESET: process.env.VITE_CLOUDINARY_UPLOAD_PRESET || '',
+    VITE_NEW_DISH_WEBHOOK_URL: process.env.VITE_NEW_DISH_WEBHOOK_URL || '',
+  },
 };
 
 export default nextConfig;
