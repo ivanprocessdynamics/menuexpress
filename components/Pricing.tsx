@@ -31,12 +31,15 @@ export default function Pricing() {
       ideal: 'Restaurantes medianos con platos básicos, que no necesiten actualizaciones frecuentes',
       setupPrice: '249',
       monthlyPrice: '29',
-      popular: true,
+      popular: false,
       features: [
         'Todo del Esencial',
         'Hasta 50 platos/fotos',
         'Soporte en el mismo día',
         'Actualización del menú (2 veces al mes)',
+        'Categorías de platos organizadas',
+        'Traducción al inglés e idioma local (catalán, gallego...)',
+        'Integración de reseñas y Google Maps en la web'
       ],
       gradient: 'from-red-500 to-pink-600',
     },
@@ -45,7 +48,7 @@ export default function Pricing() {
       ideal: 'Restaurantes que quieran una imagen seria, con menú actualizado en tiempo real',
       setupPrice: '349',
       monthlyPrice: '49',
-      popular: false,
+      popular: true,
       features: [
         'Todo del Profesional',
         'Platos/Fotos ilimitados',
@@ -53,6 +56,7 @@ export default function Pricing() {
         'Página diseñada con su estilo (colores, tipografía, fotos propias)',
         'Configuración avanzada (subcategorías, platos recomendados, secciones especiales)',
         'Estadísticas de visitas y clics',
+        'Idiomas personalizados',
         'Soporte 2h',
         'Mejora visual de las fotos (editamos cada foto para que transmitan profesionalidad)',
       ],
