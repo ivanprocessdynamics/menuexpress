@@ -34,6 +34,7 @@ export default function EditDishesSection() {
   const [saving, setSaving] = useState(false);
   const [statusMessage, setStatusMessage] = useState<string | null>(null);
   const [categoryFilter, setCategoryFilter] = useState<string>('Todas');
+  const [categories, setCategories] = useState<string[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [uploadingImage, setUploadingImage] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -53,7 +54,24 @@ export default function EditDishesSection() {
         throw new Error(data?.error || 'No se pudieron cargar los platos');
       }
       const data = (await res.json()) as { items?: DishRow[] };
-      setDishes(data.items ?? []);
+      const items = data.items ?? [];
+      setDishes(items);
+
+      // Construir categorías dinámicas a partir de los platos
+      const uniqueCategories = Array.from(
+        new Set(
+          items
+            .map((d) => d.categoria)
+            .filter((cat): cat is string => Boolean(cat && cat.trim()))
+        )
+      ).sort((a, b) => a.localeCompare(b, 'es', { sensitivity: 'base' }));
+
+      setCategories(uniqueCategories);
+
+      // Si el filtro actual ya no existe (por ejemplo, se ha eliminado una categoría), volver a "Todas"
+      setCategoryFilter((prev) =>
+        prev === 'Todas' || uniqueCategories.includes(prev) ? prev : 'Todas'
+      );
     } catch (err) {
       console.error('Error cargando platos', err);
       setError('No se pudieron cargar los platos. Revisa el webhook o Apps Script.');
@@ -228,6 +246,26 @@ export default function EditDishesSection() {
     return categoryMatch && searchMatch;
   });
 
+  const sortedDishes =
+    categoryFilter === 'Todas'
+      ? [...filteredDishes].sort((a, b) => {
+          const catCmp = a.categoria.localeCompare(b.categoria, 'es', {
+            sensitivity: 'base',
+          });
+          if (catCmp !== 0) return catCmp;
+          return a.nombre.localeCompare(b.nombre, 'es', { sensitivity: 'base' });
+        })
+      : filteredDishes;
+
+  const categoryOptions = Array.from(
+    new Set(
+      [
+        ...categories,
+        selectedDish?.categoria,
+      ].filter((cat): cat is string => Boolean(cat && cat.trim()))
+    )
+  ).sort((a, b) => a.localeCompare(b, 'es', { sensitivity: 'base' }));
+
   return (
     <section className="mt-10 space-y-4 md:space-y-6">
       <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
@@ -274,7 +312,7 @@ export default function EditDishesSection() {
               />
             </div>
             <div className="flex flex-wrap gap-1.5">
-              {['Todas', 'Tapas', 'Raciones', 'Postres', 'Bebidas'].map((cat) => (
+              {['Todas', ...categories].map((cat) => (
                 <button
                   key={cat}
                   type="button"
@@ -311,7 +349,7 @@ export default function EditDishesSection() {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100 bg-white">
-              {filteredDishes.length === 0 && !loading && (
+              {sortedDishes.length === 0 && !loading && (
                 <tr>
                   <td
                     colSpan={4}
@@ -321,7 +359,7 @@ export default function EditDishesSection() {
                   </td>
                 </tr>
               )}
-              {filteredDishes.map((dish) => (
+              {sortedDishes.map((dish) => (
                 <tr
                   key={dish.id}
                   className="cursor-pointer hover:bg-primary-50/60"
@@ -393,10 +431,11 @@ export default function EditDishesSection() {
                     onChange={handleEditChange}
                     className="rounded-lg border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
                   >
-                    <option value="Tapas">Tapas</option>
-                    <option value="Raciones">Raciones</option>
-                    <option value="Postres">Postres</option>
-                    <option value="Bebidas">Bebidas</option>
+                    {categoryOptions.map((cat) => (
+                      <option key={cat} value={cat}>
+                        {cat}
+                      </option>
+                    ))}
                   </select>
                 </div>
                 <div className="flex flex-col gap-1">
