@@ -10,15 +10,17 @@ import {
   isAdminEmail,
 } from '@/config/projects.server';
 
-type PageProps = {
-  searchParams: {
-    projectId?: string;
-  };
-};
+type SearchParamsInput =
+  | Promise<Record<string, string | string[] | undefined>>
+  | Record<string, string | string[] | undefined>
+  | undefined;
 
 const CALLBACK_URL = '/admin/nuevo-plato';
 
-export default async function NewDishPage({ searchParams }: PageProps) {
+export default async function NewDishPage({ searchParams }: { searchParams?: SearchParamsInput }) {
+  const resolvedSearchParams = searchParams ? await Promise.resolve(searchParams) : {};
+  const rawProjectId = resolvedSearchParams.projectId;
+  const selectedProjectId = Array.isArray(rawProjectId) ? rawProjectId[0] : rawProjectId;
   const session = await auth();
   const signInUrl = `/api/auth/signin?callbackUrl=${encodeURIComponent(CALLBACK_URL)}`;
   const signOutUrl = `/api/auth/signout?callbackUrl=${encodeURIComponent(CALLBACK_URL)}`;
@@ -34,7 +36,6 @@ export default async function NewDishPage({ searchParams }: PageProps) {
     return <NoProjectsView email={session.user.email} signOutUrl={signOutUrl} />;
   }
 
-  const selectedProjectId = searchParams.projectId;
   const isAdmin = isAdminEmail(email);
 
   if (!selectedProjectId) {
