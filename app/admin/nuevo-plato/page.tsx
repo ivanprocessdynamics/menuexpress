@@ -10,15 +10,13 @@ import {
   isAdminEmail,
 } from '@/config/projects.server';
 
-type SearchParamsInput =
-  | Promise<Record<string, string | string[] | undefined>>
-  | Record<string, string | string[] | undefined>
-  | undefined;
+type SearchParamsInput = Promise<Record<string, string | string[] | undefined>>;
 
 const CALLBACK_URL = '/admin/nuevo-plato';
 
 export default async function NewDishPage({ searchParams }: { searchParams?: SearchParamsInput }) {
-  const resolvedSearchParams = searchParams ? await Promise.resolve(searchParams) : {};
+  const resolvedSearchParams: Record<string, string | string[] | undefined> =
+    searchParams ? await searchParams : {};
   const rawProjectId = resolvedSearchParams.projectId;
   const selectedProjectId = Array.isArray(rawProjectId) ? rawProjectId[0] : rawProjectId;
   const session = await auth();
