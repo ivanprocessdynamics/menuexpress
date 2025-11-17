@@ -13,9 +13,21 @@ type DishPayload = {
   createdAt: string;
 };
 
-const webhookUrl = process.env.VITE_NEW_DISH_WEBHOOK_URL;
+type AddDishFormProps = {
+  projectId: string;
+  projectName: string;
+  cloudName: string;
+  uploadPreset: string;
+  hasWebhook: boolean;
+};
 
-export default function AddDishForm() {
+export default function AddDishForm({
+  projectId,
+  projectName,
+  cloudName,
+  uploadPreset,
+  hasWebhook,
+}: AddDishFormProps) {
   const [categoria, setCategoria] = useState('Tapas');
   const [nombre, setNombre] = useState('');
   const [descripcion, setDescripcion] = useState('');
@@ -57,7 +69,10 @@ export default function AddDishForm() {
     setPhotoUrl(null);
 
     try {
-      const fotoUrl = await uploadImageToCloudinary(imageFile);
+      const fotoUrl = await uploadImageToCloudinary(imageFile, {
+        cloudName,
+        uploadPreset,
+      });
 
       const dishPayload: DishPayload = {
         categoria,
@@ -71,14 +86,13 @@ export default function AddDishForm() {
 
       console.log('[Nuevo plato]', dishPayload);
 
-      const trimmedWebhook = (webhookUrl ?? '').trim();
-      if (trimmedWebhook) {
+      if (hasWebhook) {
         const res = await fetch('/api/nuevo-plato', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify(dishPayload),
+          body: JSON.stringify({ projectId, payload: dishPayload }),
         });
 
         if (!res.ok) {
@@ -87,7 +101,9 @@ export default function AddDishForm() {
       }
 
       setStatusMessage(
-        'Plato guardado correctamente. Ya puedes copiar la URL o revisar el webhook.'
+        hasWebhook
+          ? 'Plato guardado correctamente. Ya puedes copiar la URL o revisar el webhook.'
+          : 'Plato preparado correctamente. Copia el JSON y añádelo manualmente a tu hoja.'
       );
       setResultPayload(dishPayload);
       setPhotoUrl(fotoUrl);
@@ -112,6 +128,16 @@ export default function AddDishForm() {
         onSubmit={handleSubmit}
         className="space-y-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm sm:p-6"
       >
+        <div className="space-y-1">
+          <span className="inline-flex items-center rounded-full bg-primary-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-primary-700">
+            {projectName}
+          </span>
+          {!hasWebhook && (
+            <p className="text-xs text-amber-700">
+              Este proyecto todavía no tiene webhook configurado. Se generará el JSON para copiarlo manualmente.
+            </p>
+          )}
+        </div>
         <div className="flex flex-col gap-1">
           <label className="text-sm font-medium text-gray-700">Categoría</label>
           <select

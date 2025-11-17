@@ -26,7 +26,21 @@ type EditableDish = {
   orden: number;
 };
 
-export default function EditDishesSection() {
+type EditDishesSectionProps = {
+  projectId: string;
+  projectName: string;
+  cloudName: string;
+  uploadPreset: string;
+  hasWebhook: boolean;
+};
+
+export default function EditDishesSection({
+  projectId,
+  projectName,
+  cloudName,
+  uploadPreset,
+  hasWebhook,
+}: EditDishesSectionProps) {
   const [dishes, setDishes] = useState<DishRow[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -41,14 +55,21 @@ export default function EditDishesSection() {
 
   useEffect(() => {
     void loadDishes();
-  }, []);
+  }, [projectId]);
 
   async function loadDishes() {
     try {
       setLoading(true);
       setError(null);
       setStatusMessage(null);
-      const res = await fetch('/api/platos/list', { cache: 'no-store' });
+      if (!hasWebhook) {
+        setDishes([]);
+        setCategories([]);
+        return;
+      }
+      const res = await fetch(`/api/platos/list?projectId=${encodeURIComponent(projectId)}`, {
+        cache: 'no-store',
+      });
       if (!res.ok) {
         const data = await res.json().catch(() => null);
         throw new Error(data?.error || 'No se pudieron cargar los platos');
@@ -119,7 +140,10 @@ export default function EditDishesSection() {
     try {
       setUploadingImage(true);
       setStatusMessage('Subiendo nueva imagen...');
-      const fotoUrl = await uploadImageToCloudinary(file);
+      const fotoUrl = await uploadImageToCloudinary(file, {
+        cloudName,
+        uploadPreset,
+      });
       setSelectedDish({ ...selectedDish, fotoUrl });
       setStatusMessage('Imagen actualizada. No olvides guardar los cambios del plato.');
     } catch (error) {
@@ -145,6 +169,11 @@ export default function EditDishesSection() {
       return;
     }
 
+    if (!hasWebhook) {
+      setStatusMessage('Este proyecto no tiene webhook configurado; no se puede guardar.');
+      return;
+    }
+
     try {
       setSaving(true);
       setStatusMessage('Guardando cambios en Google Sheets...');
@@ -165,7 +194,7 @@ export default function EditDishesSection() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(payload),
+        body: JSON.stringify({ projectId, dish: payload }),
       });
 
       if (!res.ok) {
@@ -188,6 +217,11 @@ export default function EditDishesSection() {
   }
 
   async function toggleDishActive(dish: DishRow, nextActive: boolean) {
+    if (!hasWebhook) {
+      setStatusMessage('Este proyecto no tiene webhook configurado; no se puede actualizar.');
+      return;
+    }
+
     const previous = dish.activo;
 
     // Actualización optimista en la tabla
@@ -212,7 +246,7 @@ export default function EditDishesSection() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(payload),
+        body: JSON.stringify({ projectId, dish: payload }),
       });
 
       if (!res.ok) {
@@ -269,10 +303,15 @@ export default function EditDishesSection() {
   return (
     <section className="mt-10 space-y-4 md:space-y-6">
       <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-        <h2 className="flex items-center gap-2 text-2xl font-semibold text-gray-900 md:text-3xl">
-          <Edit3 className="h-6 w-6" />
-          Gestionar platos existentes
-        </h2>
+        <div className="flex flex-col">
+          <span className="text-xs font-semibold uppercase tracking-wide text-primary-600">
+            {projectName}
+          </span>
+          <h2 className="flex items-center gap-2 text-2xl font-semibold text-gray-900 md:text-3xl">
+            <Edit3 className="h-6 w-6" />
+            Gestionar platos existentes
+          </h2>
+        </div>
         <button
           type="button"
           onClick={() => void loadDishes()}
@@ -288,6 +327,11 @@ export default function EditDishesSection() {
         <div className="flex items-start gap-2 rounded-md border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">
           <XCircle className="mt-0.5 h-4 w-4 flex-shrink-0" />
           <span>{error}</span>
+        </div>
+      )}
+      {!hasWebhook && (
+        <div className="rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-800">
+          Este proyecto no tiene webhook configurado. Podrás visualizar los platos, pero no guardar cambios hasta que añadas un webhook.
         </div>
       )}
       <div className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm md:p-5">

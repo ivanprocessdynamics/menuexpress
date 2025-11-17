@@ -1,19 +1,32 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { getProjectSecret } from '@/config/projects.server';
 
 export async function POST(req: NextRequest) {
   try {
-    const webhookUrl = process.env.VITE_NEW_DISH_WEBHOOK_URL;
+    const body = await req.json();
+    const projectId = body?.projectId;
+    const dish = body?.dish;
 
-    if (!webhookUrl || !webhookUrl.trim()) {
+    if (!projectId || !dish) {
       return NextResponse.json(
-        { ok: false, error: 'Webhook de Google Sheets no configurado (VITE_NEW_DISH_WEBHOOK_URL)' },
+        { ok: false, error: 'Faltan projectId o dish en la petición.' },
         { status: 400 }
       );
     }
 
-    const dish = await req.json();
+    const project = getProjectSecret(projectId);
 
-    const res = await fetch(webhookUrl, {
+    if (!project?.sheetWebhook) {
+      return NextResponse.json(
+        {
+          ok: false,
+          error: `No hay webhook configurado para el proyecto ${projectId}.`,
+        },
+        { status: 400 }
+      );
+    }
+
+    const res = await fetch(project.sheetWebhook, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

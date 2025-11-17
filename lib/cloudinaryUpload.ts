@@ -1,13 +1,24 @@
-const cloudName = process.env.VITE_CLOUDINARY_CLOUD_NAME;
-const uploadPreset = process.env.VITE_CLOUDINARY_UPLOAD_PRESET;
+const defaultCloudName = process.env.VITE_CLOUDINARY_CLOUD_NAME;
+const defaultUploadPreset = process.env.VITE_CLOUDINARY_UPLOAD_PRESET;
 
-if (!cloudName || !uploadPreset) {
+if (!defaultCloudName || !defaultUploadPreset) {
   console.warn(
     '[Cloudinary] Faltan VITE_CLOUDINARY_CLOUD_NAME o VITE_CLOUDINARY_UPLOAD_PRESET en .env'
   );
 }
 
-export async function uploadImageToCloudinary(file: File): Promise<string> {
+type CloudinaryConfig = {
+  cloudName?: string;
+  uploadPreset?: string;
+};
+
+export async function uploadImageToCloudinary(
+  file: File,
+  config?: CloudinaryConfig
+): Promise<string> {
+  const cloudName = config?.cloudName ?? defaultCloudName;
+  const uploadPreset = config?.uploadPreset ?? defaultUploadPreset;
+
   if (!cloudName || !uploadPreset) {
     throw new Error('Cloudinary no está configurado (revisa las variables de entorno).');
   }

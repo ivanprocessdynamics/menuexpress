@@ -1,15 +1,30 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
+import { getProjectSecret } from '@/config/projects.server';
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
-    const webhookUrl = process.env.VITE_NEW_DISH_WEBHOOK_URL;
+    const projectId = request.nextUrl.searchParams.get('projectId');
 
-    if (!webhookUrl || !webhookUrl.trim()) {
+    if (!projectId) {
       return NextResponse.json(
-        { ok: false, error: 'Webhook de Google Sheets no configurado (VITE_NEW_DISH_WEBHOOK_URL)' },
+        { ok: false, error: 'Falta el parámetro projectId.' },
         { status: 400 }
       );
     }
+
+    const project = getProjectSecret(projectId);
+
+    if (!project?.sheetWebhook) {
+      return NextResponse.json(
+        {
+          ok: false,
+          error: `No hay webhook configurado para el proyecto ${projectId}.`,
+        },
+        { status: 400 }
+      );
+    }
+
+    const webhookUrl = project.sheetWebhook;
 
     const url = webhookUrl.includes('?')
       ? `${webhookUrl}&mode=list`
